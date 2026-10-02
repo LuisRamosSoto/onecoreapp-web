@@ -109,3 +109,18 @@ footer a { color: var(--suave); margin-right: 16px; }
 .indice li { margin-bottom: 4px; }
 .documento h3 { font-size: 17px; margin: 22px 0 6px; }
 @media (max-width: 520px) { .indice { columns: 1; } .planes { font-size: 14px; } }
+
+/* Capturas de la app */
+.galeria {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding: 8px 4px 20px; margin: 8px -20px 24px; padding-left: 20px; padding-right: 20px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.galeria::-webkit-scrollbar { display: none; }
+.galeria figure { margin: 0; flex: 0 0 auto; scroll-snap-align: center; text-align: center; }
+.galeria img {
+  width: 220px; height: auto; border-radius: 28px; display: block;
+  box-shadow: 0 14px 40px rgba(20, 10, 60, 0.28); border: 1px solid var(--linea);
+}
+.galeria figcaption { margin-top: 10px; font-size: 14px; color: var(--suave); }
+@media (min-width: 900px) { .galeria { justify-content: center; } .galeria img { width: 200px; } }
