@@ -3,17 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Invitación a un grupo — OneCore</title>
-<meta name="description" content="Únete a un grupo de entrenamiento en OneCore.">
+<title>Te invitaron a un grupo de entreno — OneCore</title>
+<meta name="description" content="Entrena y compite con tu gente en OneCore.">
+<meta name="theme-color" content="#6c5ce7">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="OneCore">
+<meta property="og:title" content="Te invitaron a un grupo de entreno — OneCore">
+<meta property="og:description" content="Entrena y compite con tu gente en OneCore.">
+<meta property="og:image" content="https://onecoreapp.com.mx/img/og-grupo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://onecoreapp.com.mx/g/">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/img/icono-64.png">
 <link rel="apple-touch-icon" href="/img/icono-180.png">
 <link rel="stylesheet" href="/estilos.css">
+<!-- Al publicar la app: <meta name="apple-itunes-app" content="app-id=ID_DE_LA_APP"> -->
 </head>
 <body>
 <div class="contenedor">
   <header class="barra">
     <a class="marca" href="/"><img src="/img/icono-64.png" alt="">OneCore</a>
-    <nav><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a></nav>
+    <nav><a href="/pro/">Pro</a><a href="/ayuda/">Ayuda</a><a href="/soporte/">Soporte</a></nav>
   </header>
   <main class="documento">
 <div class="tarjeta">
@@ -21,9 +33,9 @@
   <h1 style="margin-top:16px">Te invitaron a un grupo</h1>
   <p>Únete en OneCore para entrenar y competir con tu gente.</p>
   <div class="codigo" id="codigo"></div>
-  <a class="boton" id="abrir" href="onecore://">Abrir en OneCore</a>
+  <div class="acciones"><a class="boton" id="abrir" href="onecore://">Abrir en OneCore</a><a class="boton secundario apagado" data-app-store>Próximamente en la App Store</a></div>
   <ol class="pasos">
-    <li>Instala OneCore en tu iPhone (muy pronto en la App Store).</li>
+    <li>Instala OneCore en tu iPhone.</li>
     <li>Abre Ejercicio › Grupos › Unirme con un código.</li>
     <li>Escribe el código de arriba.</li>
   </ol>
@@ -40,9 +52,10 @@
 </script>
   </main>
   <footer>
-    <a href="/soporte/">Soporte</a><a href="/privacidad/">Aviso de privacidad</a>
+    <a href="/ayuda/">Ayuda</a><a href="/pro/">OneCore Pro</a><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a>
     <span>© 2026 OneCore</span>
   </footer>
 </div>
+<script src="/app.js"></script>
 </body>
 </html>

@@ -75,3 +75,37 @@ footer a { color: var(--suave); margin-right: 16px; }
   .portada h1 { font-size: 32px; }
   .barra nav a { margin-left: 12px; font-size: 14px; }
 }
+
+/* Lista de espera */
+.lista { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 28px auto 0; max-width: 460px; }
+.lista input[type=email] {
+  flex: 1 1 240px; min-width: 0; padding: 14px 16px; border-radius: 14px; font-size: 16px;
+  border: 1px solid var(--linea); background: var(--tarjeta); color: var(--texto);
+}
+.lista button {
+  padding: 14px 22px; border: 0; border-radius: 14px; font-size: 16px; font-weight: 600; color: #fff;
+  background: linear-gradient(135deg, var(--acento), var(--acento-fuerte)); cursor: pointer;
+}
+.lista button:disabled { opacity: 0.6; }
+.lista .casilla { flex-basis: 100%; font-size: 14px; color: var(--suave); text-align: left; }
+.lista .aviso { flex-basis: 100%; margin: 4px 0 0; font-size: 14px; color: var(--suave); min-height: 20px; }
+.trampa { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.boton.apagado { pointer-events: none; }
+.acciones { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* Tabla de planes */
+.planes { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 15px; }
+.planes th, .planes td { text-align: left; padding: 12px 10px; border-bottom: 1px solid var(--linea); vertical-align: top; }
+.planes th { font-size: 14px; color: var(--suave); font-weight: 600; }
+.planes td:nth-child(3) { font-weight: 600; }
+.precios { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 24px 0; }
+.precio { background: var(--tarjeta); border: 1px solid var(--linea); border-radius: 18px; padding: 20px; }
+.precio.destacado { border: 2px solid var(--acento); }
+.precio .cifra { font-size: 32px; font-weight: 800; margin: 6px 0 2px; }
+.precio p { margin: 0; color: var(--suave); font-size: 14px; }
+
+/* Ayuda */
+.indice { columns: 2; column-gap: 24px; padding-left: 18px; }
+.indice li { margin-bottom: 4px; }
+.documento h3 { font-size: 17px; margin: 22px 0 6px; }
+@media (max-width: 520px) { .indice { columns: 1; } .planes { font-size: 14px; } }
