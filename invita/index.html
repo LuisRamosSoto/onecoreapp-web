@@ -33,8 +33,15 @@
   <h1 style="margin-top:16px">Te invitaron a OneCore</h1>
   <p>Pendientes, hábitos, proyectos, finanzas y entrenamientos en una sola app.</p>
   <div class="codigo" id="codigo"></div>
-  <a class="boton apagado" data-app-store>Próximamente en la App Store</a>
-  <span class="pronto">Guarda este código: es de quien te invitó.</span>
+  <div class="acciones">
+    <a class="boton" id="abrir" href="onecore://">Abrir en OneCore</a>
+    <a class="boton secundario apagado" data-app-store>Próximamente en la App Store</a>
+  </div>
+  <ol class="pasos">
+    <li>Instala OneCore en tu iPhone.</li>
+    <li>Al crear tu cuenta, escribe este código en "Código de invitación".</li>
+    <li>¿Ya tienes cuenta? En tu primera semana: Ajustes › ¿Te invitó alguien?</li>
+  </ol>
 </div>
 <script>
   var partes = location.pathname.split("/").filter(Boolean);
@@ -43,7 +50,10 @@
   var codigo = (segmento || new URLSearchParams(location.search).get("code") || "")
     .toUpperCase().replace(/[^A-Z0-9]/g, "");
   var caja = document.getElementById("codigo");
-  if (codigo) { caja.textContent = codigo; } else { caja.style.display = "none"; }
+  if (codigo) {
+    caja.textContent = codigo;
+    document.getElementById("abrir").href = "onecore://invita/" + codigo;
+  } else { caja.style.display = "none"; }
 </script>
   </main>
   <footer>
