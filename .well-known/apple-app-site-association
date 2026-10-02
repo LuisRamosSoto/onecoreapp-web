@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["BW7AP2GS9K.com.luisramos.onecore"],
+        "components": [
+          { "/": "/g/*", "comment": "Invitaciones a grupos de entreno" }
+        ]
+      }
+    ]
+  }
+}

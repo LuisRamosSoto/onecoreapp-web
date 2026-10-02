@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invitación — OneCore</title>
+<meta name="description" content="Te invitaron a OneCore.">
+<link rel="icon" href="/img/icono-64.png">
+<link rel="apple-touch-icon" href="/img/icono-180.png">
+<link rel="stylesheet" href="/estilos.css">
+</head>
+<body>
+<div class="contenedor">
+  <header class="barra">
+    <a class="marca" href="/"><img src="/img/icono-64.png" alt="">OneCore</a>
+    <nav><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a></nav>
+  </header>
+  <main class="documento">
+<div class="tarjeta">
+  <img src="/img/icono-180.png" alt="" width="84" height="84" style="border-radius:20px">
+  <h1 style="margin-top:16px">Te invitaron a OneCore</h1>
+  <p>Pendientes, hábitos, proyectos, finanzas y entrenamientos en una sola app.</p>
+  <div class="codigo" id="codigo"></div>
+  <span class="boton">Próximamente en la App Store</span>
+  <span class="pronto">Guarda este código: es de quien te invitó.</span>
+</div>
+<script>
+  var partes = location.pathname.split("/").filter(Boolean);
+  // Solo un código de verdad: nada de "index.html" ni restos de la dirección.
+  var segmento = partes[1] && partes[1].indexOf(".") < 0 ? partes[1] : "";
+  var codigo = (segmento || new URLSearchParams(location.search).get("code") || "")
+    .toUpperCase().replace(/[^A-Z0-9]/g, "");
+  var caja = document.getElementById("codigo");
+  if (codigo) { caja.textContent = codigo; } else { caja.style.display = "none"; }
+</script>
+  </main>
+  <footer>
+    <a href="/soporte/">Soporte</a><a href="/privacidad/">Aviso de privacidad</a>
+    <span>© 2026 OneCore</span>
+  </footer>
+</div>
+</body>
+</html>

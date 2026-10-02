@@ -1,0 +1,30 @@
+# OneCore — onecoreapp.com.mx (Hostinger)
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+RewriteEngine On
+
+# Siempre por HTTPS.
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# www → sin www. Apple pide el archivo de enlaces en el dominio exacto y sin
+# redirecciones, así que el dominio bueno es el que no lleva www.
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# /g/CODIGO → la página de invitación a un grupo (la app abre estos enlaces
+# directamente; esta página es para quien todavía no la tiene).
+RewriteRule ^g/[A-Za-z0-9]+/?$ /g/index.html [L]
+
+# /invita/CODIGO → la página de "te invitaron a OneCore".
+RewriteRule ^invita/[A-Za-z0-9]+/?$ /invita/index.html [L]
+
+# El archivo de enlaces de Apple: JSON, sin extensión.
+<Files "apple-app-site-association">
+  ForceType application/json
+  <IfModule mod_headers.c>
+    Header set Content-Type "application/json"
+  </IfModule>
+</Files>
