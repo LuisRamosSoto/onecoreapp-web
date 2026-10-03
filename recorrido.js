@@ -1,9 +1,12 @@
-// Portada: entrada cinematográfica y recorrido por los módulos.
+// Portada: entrada cinematográfica y recorrido por los módulos y sus apartados.
 //
-// 1. Recorrido (siempre): cada sección (.paso) tiene un data-modulo. Al entrar
-//    a la franja de lectura, el teléfono hace un "toque" en el botón de
-//    módulos de la app y desliza a ese módulo, con su video. Cambian también
-//    las dos tarjetas flotantes.
+// 1. Recorrido (siempre). La página se lee por tramos: cada módulo tiene un
+//    tramo principal y uno por apartado (Calendario, Progreso…). Cada tramo
+//    tiene su capa en el teléfono (data-capa). Al llegar a un tramo, el
+//    teléfono hace un "toque" donde la app tiene ese botón —el de módulos
+//    para cambiar de módulo, la pestaña del apartado para entrar a él— y
+//    pasa a esa pantalla con su video. Al cambiar de módulo cambian también
+//    el color, la palabra gigante del fondo y las tarjetas flotantes.
 // 2. Efectos (si cargó GSAP y no se pidió reducir movimiento): el título se
 //    enfoca al abrir; al bajar se disuelve mientras el teléfono sube girando
 //    en 3D; el teléfono se inclina con el ratón; los textos entran
@@ -32,20 +35,24 @@
   }
 
   // ------------------------------------------------------------- recorrido
-  var orden = Array.prototype.map.call(rec.querySelectorAll(".paso"), function (p) {
-    return p.dataset.modulo;
-  });
+  var tramos = Array.prototype.slice.call(rec.querySelectorAll(".tramo"));
+  var orden = tramos.map(function (t) { return t.dataset.capa; });
   var capas = {};
   rec.querySelectorAll(".capa").forEach(function (c) {
-    capas[c.dataset.modulo] = c;
-    // El póster también de fondo: mientras el video carga nunca se ve negro.
+    capas[c.dataset.capa] = c;
+    // Lo que se ve mientras el video carga (o siempre, sin movimiento): en un
+    // apartado, su pantalla final; en un módulo, su póster.
     var v = c.querySelector("video");
-    if (v && v.poster) c.style.backgroundImage = "url(" + v.getAttribute("poster") + ")";
+    var fondo = (reducir && c.dataset.final) || (v && v.getAttribute("poster"));
+    if (fondo) c.style.backgroundImage = "url(" + fondo + ")";
+    if (reducir && c.dataset.final && v) v.style.visibility = "hidden";
   });
   var toque = rec.querySelector(".toque");
   var indice = rec.querySelector(".indice-modulos");
   var insignias = rec.querySelectorAll(".insignia");
-  var activo = null;
+  var palabra = rec.querySelector(".palabra-fondo");
+  var activa = null;      // capa a la vista
+  var modulo = null;      // módulo de esa capa
   var pendiente = null;
 
   // Íconos de línea (24×24) para las tarjetas: los emojis no se dibujan
@@ -78,37 +85,59 @@
     ejercicio:  [["trofeo", "Nuevo récord", "Press de banca"], ["pesa", "2 de 3 sesiones", "Esta semana"]]
   };
 
-  function video(mod) { return capas[mod] && capas[mod].querySelector("video"); }
+  function modDe(capa) { return capas[capa] ? capas[capa].dataset.modulo : capa; }
+  function video(capa) { return capas[capa] && capas[capa].querySelector("video"); }
 
-  function cargar(mod) {
-    var v = video(mod);
+  function cargar(capa) {
+    var v = video(capa);
     if (!v || v.getAttribute("src")) return v;
     v.setAttribute("src", v.dataset.src);
     v.preload = "auto";
     return v;
   }
 
-  function reproducir(mod) {
+  function reproducir(capa) {
     if (reducir) return;
-    var v = cargar(mod);
+    var v = cargar(capa);
     if (!v) return;
     try { v.currentTime = 0; } catch (e) {}
     var p = v.play();
     if (p && p.catch) p.catch(function () {});
   }
 
-  function pausar(mod) {
-    var v = video(mod);
+  function pausar(capa) {
+    var v = video(capa);
     if (v && !v.paused) v.pause();
   }
 
-  function marcar(mod) {
+  // Lo que depende del módulo: color, índice, palabra, tarjetas, pasos.
+  function marcarModulo(mod) {
+    document.body.dataset.mod = mod;
     rec.dataset.activo = mod;
     rec.querySelectorAll(".paso").forEach(function (p) {
       p.classList.toggle("activo", p.dataset.modulo === mod);
     });
     if (indice) indice.querySelectorAll("a").forEach(function (a) {
       a.classList.toggle("activo", a.dataset.modulo === mod);
+    });
+    if (palabra) {
+      var nombre = (rec.querySelector('.paso[data-modulo="' + mod + '"] .antetitulo') || {}).textContent || "";
+      if (g) {
+        g.to(palabra, { autoAlpha: 0, scale: 0.96, duration: 0.25, ease: "power2.in", overwrite: true, onComplete: function () {
+          palabra.textContent = nombre;
+          g.to(palabra, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power3.out" });
+        } });
+      } else {
+        palabra.textContent = nombre;
+      }
+    }
+    contarInsignias(mod);
+  }
+
+  // Lo que depende de la capa: la pestaña marcada.
+  function marcarPestana(capa) {
+    rec.querySelectorAll(".pestanas button").forEach(function (b) {
+      b.classList.toggle("activa", b.dataset.ir === capa);
     });
   }
 
@@ -128,15 +157,25 @@
     }
   }
 
-  function activar(mod) {
-    if (!capas[mod] || mod === activo) return;
-    var antes = activo;
-    activo = mod;
-    marcar(mod);
-    if (antes) rec.classList.toggle("atras", orden.indexOf(mod) < orden.indexOf(antes));
+  function activar(capa, tramo) {
+    if (!capas[capa] || capa === activa) return;
+    var antes = activa;
+    var mod = modDe(capa);
+    activa = capa;
+    if (mod !== modulo) { modulo = mod; marcarModulo(mod); }
+    marcarPestana(capa);
+    if (antes) rec.classList.toggle("atras", orden.indexOf(capa) < orden.indexOf(antes));
 
+    // El toque cae donde la app tiene el botón: el de módulos al cambiar de
+    // módulo; la pestaña del apartado al entrar a uno. Volver al principal de
+    // un módulo es tocar su primera pestaña.
     clearTimeout(pendiente);
+    var x = "11.5%";
+    if (antes && modDe(antes) === mod) {
+      x = tramo && tramo.dataset.toque ? tramo.dataset.toque + "%" : "21.7%";
+    }
     if (antes && !reducir && toque) {
+      toque.style.left = x;
       toque.classList.remove("pulsa");
       void toque.offsetWidth;
       toque.classList.add("pulsa");
@@ -144,7 +183,7 @@
     pendiente = setTimeout(function () {
       Object.keys(capas).forEach(function (m) {
         var c = capas[m];
-        if (m === mod) {
+        if (m === capa) {
           c.classList.remove("sale");
           c.classList.add("activa");
         } else if (c.classList.contains("activa")) {
@@ -154,9 +193,8 @@
           setTimeout(function () { c.classList.remove("sale"); }, 600);
         }
       });
-      reproducir(mod);
-      contarInsignias(mod);
-      var sig = orden[orden.indexOf(mod) + 1];
+      reproducir(capa);
+      var sig = orden[orden.indexOf(capa) + 1];
       if (sig && !reducir) cargar(sig);
     }, antes && !reducir ? 220 : 0);
   }
@@ -169,32 +207,40 @@
     if (observador) observador.disconnect();
     observador = new IntersectionObserver(function (entradas) {
       entradas.forEach(function (e) {
-        if (e.isIntersecting) activar(e.target.dataset.modulo);
+        if (e.isIntersecting) activar(e.target.dataset.capa, e.target);
       });
     }, { rootMargin: celular.matches ? "-88% 0px -11% 0px" : "-45% 0px -45% 0px" });
-    rec.querySelectorAll(".paso").forEach(function (p) { observador.observe(p); });
+    tramos.forEach(function (t) { observador.observe(t); });
   }
   observar();
   if (celular.addEventListener) celular.addEventListener("change", observar);
 
-  // El índice se ve mientras el recorrido ocupa la pantalla; fuera de él, el
-  // video se pausa.
+  // Mientras el recorrido ocupa la pantalla: índice y palabra visibles, video
+  // en marcha. Fuera de él, todo en pausa.
   new IntersectionObserver(function (entradas) {
     var dentro = entradas[0].isIntersecting;
     if (indice) indice.classList.toggle("visible", dentro);
-    if (dentro) reproducir(activo); else pausar(activo);
+    document.body.classList.toggle("en-recorrido", dentro);
+    if (dentro) reproducir(activa); else pausar(activa);
   }, { rootMargin: "-50% 0px -50% 0px" }).observe(rec);
 
+  function irA(capa, modulo) {
+    var destino = capa ? rec.querySelector('.tramo[data-capa="' + capa + '"]')
+                       : document.getElementById(modulo);
+    if (destino) destino.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "center" });
+  }
   if (indice) indice.addEventListener("click", function (e) {
     var a = e.target.closest("a");
     if (!a) return;
-    var destino = document.getElementById(a.dataset.modulo);
-    if (!destino) return;
     e.preventDefault();
-    destino.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "center" });
+    irA(a.dataset.modulo);
+  });
+  rec.addEventListener("click", function (e) {
+    var b = e.target.closest(".pestanas button");
+    if (b) irA(b.dataset.ir);
   });
 
-  activar(orden[0]);
+  activar(orden[0], tramos[0]);
 
   if (!g) return;
 
@@ -234,11 +280,17 @@
       scrollTrigger: { trigger: rec, start: "top 98%", end: movil ? "top 10%" : "top 5%", scrub: 1 } });
 
   // Los textos de cada módulo entran desenfocados, uno tras otro.
-  rec.querySelectorAll(".paso").forEach(function (p) {
-    g.from(p.querySelectorAll(".antetitulo, h2, li"), {
-      autoAlpha: 0, y: 34, filter: "blur(10px)", duration: 0.95, ease: "power3.out", stagger: 0.09,
-      scrollTrigger: { trigger: p, start: movil ? "top 92%" : "top 72%", toggleActions: "play none none reverse" }
+  rec.querySelectorAll(".tramo").forEach(function (t) {
+    g.from(t.querySelectorAll(".antetitulo, h2, .pestanas, li, .etiqueta, h3, p"), {
+      autoAlpha: 0, y: 34, filter: "blur(10px)", duration: 0.95, ease: "power3.out", stagger: 0.08,
+      scrollTrigger: { trigger: t, start: movil ? "top 92%" : "top 74%", toggleActions: "play none none reverse" }
     });
+  });
+
+  // La palabra del fondo se desplaza un poco al bajar: da profundidad.
+  g.fromTo(".palabra-fondo", { yPercent: 8 }, {
+    yPercent: -8, ease: "none",
+    scrollTrigger: { trigger: rec, start: "top bottom", end: "bottom top", scrub: true }
   });
 
   // El teléfono se inclina siguiendo el ratón, con un brillo que lo sigue.
