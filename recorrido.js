@@ -1,26 +1,62 @@
-// Portada: el teléfono cambia de módulo según la sección que se está leyendo.
+// Portada: entrada cinematográfica y recorrido por los módulos.
 //
-// Cada sección (.paso) tiene un data-modulo. Al entrar a la franja de lectura
-// de la pantalla, el teléfono hace un "toque" en el botón de módulos de la app
-// y, un instante después, desliza a la pantalla de ese módulo y reproduce su
-// video. Hacia arriba, el deslizamiento va al revés.
+// 1. Recorrido (siempre): cada sección (.paso) tiene un data-modulo. Al entrar
+//    a la franja de lectura, el teléfono hace un "toque" en el botón de
+//    módulos de la app y desliza a ese módulo, con su video. Cambian también
+//    las dos tarjetas flotantes.
+// 2. Efectos (si cargó GSAP y no se pidió reducir movimiento): el título se
+//    enfoca al abrir; al bajar se disuelve mientras el teléfono sube girando
+//    en 3D; el teléfono se inclina con el ratón; los textos entran
+//    desenfocados; las cifras cuentan; el cierre se enfoca al llegar.
 //
-// Los videos se cargan cuando hacen falta (y el siguiente se precarga). Con
-// "reducir movimiento" no se reproduce nada: se queda el póster de cada uno.
+// Sin GSAP o con "reducir movimiento", todo queda en su sitio y legible.
 (function () {
   var rec = document.querySelector(".recorrido");
   if (!rec) return;
 
   var reducir = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var g = !reducir && window.gsap && window.ScrollTrigger ? window.gsap : null;
+  if (g) {
+    g.registerPlugin(window.ScrollTrigger);
+    document.body.classList.add("con-gsap");
+  }
+
+  // ---------------------------------------------------------------- tienda
+  // El botón grande de la App Store: con el ID publicado, se enciende.
+  var tienda = document.querySelector("[data-tienda]");
+  if (tienda && window.ONECORE && ONECORE.APP_STORE_ID) {
+    tienda.href = "https://apps.apple.com/app/id" + ONECORE.APP_STORE_ID;
+    tienda.classList.remove("apagado");
+    var arriba = tienda.querySelector("[data-tienda-arriba]");
+    if (arriba) arriba.textContent = "Descárgala en la";
+  }
+
+  // ------------------------------------------------------------- recorrido
   var orden = Array.prototype.map.call(rec.querySelectorAll(".paso"), function (p) {
     return p.dataset.modulo;
   });
   var capas = {};
-  rec.querySelectorAll(".capa").forEach(function (c) { capas[c.dataset.modulo] = c; });
+  rec.querySelectorAll(".capa").forEach(function (c) {
+    capas[c.dataset.modulo] = c;
+    // El póster también de fondo: mientras el video carga nunca se ve negro.
+    var v = c.querySelector("video");
+    if (v && v.poster) c.style.backgroundImage = "url(" + v.getAttribute("poster") + ")";
+  });
   var toque = rec.querySelector(".toque");
   var indice = rec.querySelector(".indice-modulos");
-  var activo = "inicio";
+  var insignias = rec.querySelectorAll(".insignia");
+  var activo = null;
   var pendiente = null;
+
+  // Lo que "pasa" en cada módulo, en las dos tarjetas de vidrio.
+  var momentos = {
+    inicio:     [["📅", "Junta con diseño", "Hoy · 16:00"], ["☀️", "7 pendientes hoy", "2 de alta prioridad"]],
+    pendientes: [["✅", "Pagar la tarjeta", "Hecho"], ["🔔", "Te avisamos", "30 min antes"]],
+    habitos:    [["🔥", "Racha de 7 días", "Meditar"], ["💧", "5 de 8 vasos", "Tomar agua"]],
+    proyectos:  [["📈", "Mudanza al 60%", "Faltan 15 días"], ["👥", "Espacio compartido", "Con tu equipo"]],
+    finanzas:   [["🧾", "Ticket leído", "$96.40 · Oxxo"], ["📊", "Balance del mes", "+$15,938"]],
+    ejercicio:  [["🏆", "Nuevo récord", "Press de banca"], ["💪", "2 de 3 sesiones", "Esta semana"]]
+  };
 
   function video(mod) { return capas[mod] && capas[mod].querySelector("video"); }
 
@@ -56,16 +92,31 @@
     });
   }
 
+  function contarInsignias(mod) {
+    var m = momentos[mod];
+    if (!m) return;
+    insignias.forEach(function (el, i) {
+      var d = m[i];
+      el.querySelector(".ico").textContent = d[0];
+      el.querySelector("b").textContent = d[1];
+      el.querySelector("i").textContent = d[2];
+    });
+    if (g) {
+      g.fromTo(insignias,
+        { y: 34, scale: 0.8, rotation: function (i) { return i ? 8 : -8; }, autoAlpha: 0 },
+        { y: 0, scale: 1, rotation: 0, autoAlpha: 1, duration: 0.9, ease: "back.out(1.6)", stagger: 0.14, delay: 0.25, overwrite: true });
+    }
+  }
+
   function activar(mod) {
     if (!capas[mod] || mod === activo) return;
     var antes = activo;
     activo = mod;
     marcar(mod);
-    rec.classList.toggle("atras", orden.indexOf(mod) < orden.indexOf(antes));
+    if (antes) rec.classList.toggle("atras", orden.indexOf(mod) < orden.indexOf(antes));
 
-    // Primero el toque; la pantalla cambia cuando el "dedo" ya bajó.
     clearTimeout(pendiente);
-    if (!reducir && toque) {
+    if (antes && !reducir && toque) {
       toque.classList.remove("pulsa");
       void toque.offsetWidth;
       toque.classList.add("pulsa");
@@ -84,14 +135,14 @@
         }
       });
       reproducir(mod);
-      // El que sigue, listo para cuando llegue.
+      contarInsignias(mod);
       var sig = orden[orden.indexOf(mod) + 1];
       if (sig && !reducir) cargar(sig);
-    }, reducir ? 0 : 220);
+    }, antes && !reducir ? 220 : 0);
   }
 
-  // La franja de lectura: el centro de la pantalla en escritorio; en el
-  // celular, la parte de abajo, que es lo que queda libre bajo el teléfono.
+  // La franja de lectura: el centro en escritorio; en el celular, la parte de
+  // abajo, que es lo que queda libre bajo el teléfono.
   var celular = window.matchMedia("(max-width: 860px)");
   var observador = null;
   function observar() {
@@ -106,8 +157,8 @@
   observar();
   if (celular.addEventListener) celular.addEventListener("change", observar);
 
-  // El índice se ve mientras el recorrido ocupa la pantalla. Fuera de él, el
-  // video se pausa: no tiene caso reproducir lo que nadie ve.
+  // El índice se ve mientras el recorrido ocupa la pantalla; fuera de él, el
+  // video se pausa.
   new IntersectionObserver(function (entradas) {
     var dentro = entradas[0].isIntersecting;
     if (indice) indice.classList.toggle("visible", dentro);
@@ -123,6 +174,94 @@
     destino.scrollIntoView({ behavior: reducir ? "auto" : "smooth", block: "center" });
   });
 
-  marcar(activo);
-  reproducir(activo);
+  activar(orden[0]);
+
+  if (!g) return;
+
+  // --------------------------------------------------------------- efectos
+  var ST = window.ScrollTrigger;
+  var movil = celular.matches;
+
+  // Entrada: el título se enfoca y la segunda línea se revela.
+  g.fromTo(".linea-1",
+    { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 },
+    { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, duration: 1.7, ease: "expo.out", delay: 0.15 });
+  g.fromTo(".linea-2",
+    { clipPath: "inset(-20% 100% -20% -5%)" },
+    { clipPath: "inset(-20% -5% -20% -5%)", duration: 1.4, ease: "power4.inOut", delay: 0.75, clearProps: "clipPath" });
+  g.from(".cine .antetitulo, .cine .entrada, .acciones-cine > *, .cine .sigue", {
+    autoAlpha: 0, y: 26, filter: "blur(10px)", duration: 1.1, ease: "expo.out", stagger: 0.08, delay: 1.0
+  });
+
+  // Al bajar: el título se agranda y se disuelve.
+  g.to(".cine-texto", {
+    scale: 1.14, filter: "blur(16px)", autoAlpha: 0, ease: "none",
+    scrollTrigger: { trigger: ".cine", start: "top top", end: "bottom top", scrub: true }
+  });
+  g.to(".cine .sigue", {
+    autoAlpha: 0, y: 20, ease: "none",
+    scrollTrigger: { trigger: ".cine", start: "top top", end: "25% top", scrub: true }
+  });
+  g.to(".rejilla-fondo", {
+    scale: 1.3, autoAlpha: 0, ease: "none",
+    scrollTrigger: { trigger: ".cine", start: "top top", end: "bottom top", scrub: true }
+  });
+
+  // …mientras el teléfono sube girando hasta su lugar.
+  g.fromTo(".entrada-telefono",
+    { y: movil ? 120 : 220, z: -300, rotationX: 48, rotationY: -24, scale: 0.7, autoAlpha: 0 },
+    { y: 0, z: 0, rotationX: 0, rotationY: 0, scale: 1, autoAlpha: 1, ease: "power2.out",
+      scrollTrigger: { trigger: rec, start: "top 98%", end: movil ? "top 10%" : "top 5%", scrub: 1 } });
+
+  // Los textos de cada módulo entran desenfocados, uno tras otro.
+  rec.querySelectorAll(".paso").forEach(function (p) {
+    g.from(p.querySelectorAll(".antetitulo, h2, li"), {
+      autoAlpha: 0, y: 34, filter: "blur(10px)", duration: 0.95, ease: "power3.out", stagger: 0.09,
+      scrollTrigger: { trigger: p, start: movil ? "top 88%" : "top 72%", toggleActions: "play none none reverse" }
+    });
+  });
+
+  // El teléfono se inclina siguiendo el ratón, con un brillo que lo sigue.
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var telefono = rec.querySelector(".telefono");
+    var pantalla = rec.querySelector(".pantalla");
+    var cuadro = 0;
+    window.addEventListener("mousemove", function (e) {
+      cancelAnimationFrame(cuadro);
+      cuadro = requestAnimationFrame(function () {
+        var x = (e.clientX / innerWidth - 0.5) * 2;
+        var y = (e.clientY / innerHeight - 0.5) * 2;
+        g.to(telefono, { rotationY: x * 11, rotationX: -y * 9, duration: 1.2, ease: "power3.out" });
+        var r = pantalla.getBoundingClientRect();
+        pantalla.style.setProperty("--mx", (e.clientX - r.left) + "px");
+        pantalla.style.setProperty("--my", (e.clientY - r.top) + "px");
+      });
+    });
+  }
+
+  // Las cifras cuentan al aparecer.
+  document.querySelectorAll(".cifras strong").forEach(function (el) {
+    var hasta = Number(el.dataset.hasta) || 0;
+    var desde = hasta === 0 ? 9 : 0;
+    var obj = { n: desde };
+    el.textContent = desde;
+    g.to(obj, {
+      n: hasta, duration: 1.6, ease: "expo.out",
+      onUpdate: function () { el.textContent = Math.round(obj.n); },
+      scrollTrigger: { trigger: el, start: "top 85%", once: true }
+    });
+  });
+  g.from(".conectado .bloque", {
+    autoAlpha: 0, y: 40, scale: 0.94, duration: 0.9, ease: "back.out(1.4)", stagger: 0.1,
+    scrollTrigger: { trigger: ".conectado", start: "top 80%" }
+  });
+
+  // El cierre se enfoca al llegar.
+  g.fromTo(".cierre-cine",
+    { scale: 0.86, filter: "blur(24px)", autoAlpha: 0 },
+    { scale: 1, filter: "blur(0px)", autoAlpha: 1, ease: "power2.out",
+      scrollTrigger: { trigger: ".cierre", start: "top 90%", end: "top 45%", scrub: 1 } });
+
+  // Los videos cambian el alto de la página al cargar: recalcular.
+  window.addEventListener("load", function () { ST.refresh(); });
 })();

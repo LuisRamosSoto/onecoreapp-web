@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <title>OneCore — Tu día, en una sola app</title>
 <meta name="description" content="Pendientes, hábitos, proyectos, finanzas y entrenamientos en una sola app para iPhone.">
-<meta name="theme-color" content="#0b0b10">
+<meta name="theme-color" content="#07070c">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:site_name" content="OneCore">
@@ -22,10 +22,11 @@
 <link rel="stylesheet" href="/estilos.css">
 <link rel="stylesheet" href="/inicio.css">
 <link rel="preload" as="image" href="/img/videos/inicio.jpg">
-<!-- Al publicar la app: <meta name="apple-itunes-app" content="app-id=ID_DE_LA_APP"> -->
 </head>
 <body class="portada-nueva">
-<div class="contenedor ancho">
+<div class="grano" aria-hidden="true"></div>
+
+<div class="contenedor ancho cabecera">
   <header class="barra">
     <a class="marca" href="/"><img src="/img/icono-64.png" alt="">OneCore</a>
     <nav><a href="/pro/">Pro</a><a href="/ayuda/">Ayuda</a><a href="/soporte/">Soporte</a></nav>
@@ -33,21 +34,46 @@
 </div>
 
 <main>
-  <!-- El recorrido: el teléfono se queda quieto y cada módulo lo "abre" al
-       llegar a su sección, con videos reales de la app (cuenta demo). -->
+  <!-- Entrada: el título se enfoca y, al bajar, se disuelve mientras el
+       teléfono sube a su lugar. -->
+  <section class="cine" aria-label="OneCore">
+    <div class="rejilla-fondo" aria-hidden="true"></div>
+    <div class="cine-texto">
+      <p class="antetitulo">Para iPhone</p>
+      <h1><span class="linea-1">Tu día,</span><span class="linea-2">en una sola app.</span></h1>
+      <p class="entrada">Pendientes, hábitos, proyectos, finanzas y entrenamientos, juntos y sincronizados.</p>
+      <div class="acciones-cine">
+        <a class="btn-tactil claro apagado" data-tienda aria-label="OneCore en la App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small data-tienda-arriba>Próximamente en la</small><strong>App Store</strong></span>
+        </a>
+        <a class="btn-tactil oscuro" href="#avisame"><span><small>Te escribimos</small><strong>Avísame</strong></span></a>
+        <a class="btn-tactil oscuro" data-beta><span><small>TestFlight</small><strong>Probar la beta</strong></span></a>
+      </div>
+    </div>
+    <p class="sigue">Desliza</p>
+  </section>
+
+  <!-- El recorrido: el teléfono se queda quieto y cada sección "abre" su
+       módulo, con videos reales de la app (cuenta demo). -->
   <section class="recorrido" data-activo="inicio" aria-label="Recorrido por OneCore">
     <div class="escenario" aria-hidden="true">
       <div class="halo"></div>
-      <div class="telefono">
-        <div class="pantalla">
-          <div class="capa activa" data-modulo="inicio"><video muted playsinline loop preload="auto" poster="/img/videos/inicio.jpg" data-src="/img/videos/inicio.mp4"></video></div>
-          <div class="capa" data-modulo="pendientes"><video muted playsinline loop preload="none" poster="/img/videos/pendientes.jpg" data-src="/img/videos/pendientes.mp4"></video></div>
-          <div class="capa" data-modulo="habitos"><video muted playsinline loop preload="none" poster="/img/videos/habitos.jpg" data-src="/img/videos/habitos.mp4"></video></div>
-          <div class="capa" data-modulo="proyectos"><video muted playsinline loop preload="none" poster="/img/videos/proyectos.jpg" data-src="/img/videos/proyectos.mp4"></video></div>
-          <div class="capa" data-modulo="finanzas"><video muted playsinline loop preload="none" poster="/img/videos/finanzas.jpg" data-src="/img/videos/finanzas.mp4"></video></div>
-          <div class="capa" data-modulo="ejercicio"><video muted playsinline loop preload="none" poster="/img/videos/ejercicio.jpg" data-src="/img/videos/ejercicio.mp4"></video></div>
-          <span class="toque"></span>
+      <div class="entrada-telefono">
+        <div class="telefono">
+          <div class="pantalla">
+            <div class="capa activa" data-modulo="inicio"><video muted playsinline loop preload="auto" poster="/img/videos/inicio.jpg" data-src="/img/videos/inicio.mp4"></video></div>
+            <div class="capa" data-modulo="pendientes"><video muted playsinline loop preload="none" poster="/img/videos/pendientes.jpg" data-src="/img/videos/pendientes.mp4"></video></div>
+            <div class="capa" data-modulo="habitos"><video muted playsinline loop preload="none" poster="/img/videos/habitos.jpg" data-src="/img/videos/habitos.mp4"></video></div>
+            <div class="capa" data-modulo="proyectos"><video muted playsinline loop preload="none" poster="/img/videos/proyectos.jpg" data-src="/img/videos/proyectos.mp4"></video></div>
+            <div class="capa" data-modulo="finanzas"><video muted playsinline loop preload="none" poster="/img/videos/finanzas.jpg" data-src="/img/videos/finanzas.mp4"></video></div>
+            <div class="capa" data-modulo="ejercicio"><video muted playsinline loop preload="none" poster="/img/videos/ejercicio.jpg" data-src="/img/videos/ejercicio.mp4"></video></div>
+            <span class="brillo"></span>
+            <span class="toque"></span>
+          </div>
         </div>
+        <div class="insignia arriba"><span class="ico"></span><span><b></b><i></i></span></div>
+        <div class="insignia abajo"><span class="ico"></span><span><b></b><i></i></span></div>
       </div>
     </div>
 
@@ -61,22 +87,14 @@
     </nav>
 
     <div class="pasos">
-      <article class="paso paso-portada" id="inicio" data-modulo="inicio">
-        <p class="antetitulo">Para iPhone</p>
-        <h1>Tu día, en una sola app</h1>
-        <p class="entrada">Pendientes, hábitos, proyectos, finanzas y entrenamientos, juntos y sincronizados. Abre OneCore y ves lo que sigue.</p>
-        <div class="acciones">
-          <a class="boton apagado" data-app-store>Próximamente en la App Store</a>
-          <a class="boton secundario" data-beta>Probar la beta</a>
-        </div>
-        <form class="lista" data-lista>
-          <input type="email" name="correo" required placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo">
-          <input type="text" name="sitio" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button type="submit">Avísame</button>
-          <label class="casilla"><input type="checkbox" name="beta"> También quiero probar la beta</label>
-          <p class="aviso" data-aviso></p>
-        </form>
-        <p class="sigue">Desliza para ver cada módulo</p>
+      <article class="paso" id="inicio" data-modulo="inicio">
+        <p class="antetitulo">Inicio</p>
+        <h2>Lo que sigue, de un vistazo</h2>
+        <ul>
+          <li>Tu próxima junta, lo pendiente de hoy y tus hábitos en una pantalla.</li>
+          <li>Acciones rápidas: un pendiente, un gasto o una nota en un toque.</li>
+          <li>La semana arriba, para saber qué viene.</li>
+        </ul>
       </article>
 
       <article class="paso" id="pendientes" data-modulo="pendientes">
@@ -132,6 +150,12 @@
   </section>
 
   <div class="contenedor ancho">
+    <section class="cifras" aria-label="OneCore en números">
+      <div><strong data-hasta="6">6</strong><span>módulos en una app</span></div>
+      <div><strong data-hasta="1">1</strong><span>lugar para tu día</span></div>
+      <div><strong data-hasta="0">0</strong><span>anuncios</span></div>
+    </section>
+
     <section class="conectado">
       <h2>Y todo conectado</h2>
       <div class="rejilla">
@@ -145,18 +169,21 @@
     <section class="tarjeta">
       <h2 style="margin-top:0">Gratis para empezar. Pro cuando lo necesites.</h2>
       <p>Pendientes y notas sin límite en el plan gratis. Con Pro, todo sin límites, tu historial completo, grupos y espacios compartidos.</p>
-      <a class="boton secundario" href="/pro/">Ver OneCore Pro</a>
+      <a class="btn-tactil oscuro" href="/pro/"><span><small>Planes y precios</small><strong>Ver OneCore Pro</strong></span></a>
     </section>
 
-    <section class="cierre">
-      <h2>¿Te avisamos cuando salga?</h2>
-      <form class="lista" data-lista>
-        <input type="email" name="correo" required placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo">
-        <input type="text" name="sitio" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button type="submit">Avísame</button>
-        <label class="casilla"><input type="checkbox" name="beta"> También quiero probar la beta</label>
-        <p class="aviso" data-aviso></p>
-      </form>
+    <section class="cierre" id="avisame">
+      <div class="cierre-cine">
+        <h2 class="plata">Empieza a ordenar tu día.</h2>
+        <p>Déjanos tu correo y te avisamos en cuanto OneCore esté en la App Store.</p>
+        <form class="lista" data-lista>
+          <input type="email" name="correo" required placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo">
+          <input type="text" name="sitio" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Avísame</button>
+          <label class="casilla"><input type="checkbox" name="beta"> También quiero probar la beta</label>
+          <p class="aviso" data-aviso></p>
+        </form>
+      </div>
     </section>
 
     <footer>
@@ -166,6 +193,8 @@
   </div>
 </main>
 <script src="/app.js"></script>
+<script src="/vendor/gsap.min.js"></script>
+<script src="/vendor/ScrollTrigger.min.js"></script>
 <script src="/recorrido.js"></script>
 </body>
 </html>
