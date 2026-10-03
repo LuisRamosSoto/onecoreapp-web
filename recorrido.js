@@ -48,14 +48,34 @@
   var activo = null;
   var pendiente = null;
 
+  // Íconos de línea (24×24) para las tarjetas: los emojis no se dibujan
+  // igual en todos lados (en Safari de iPhone salían como cuadros).
+  var I = {
+    calendario: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+    sol: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    hecho: '<circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.8 2.8L16.5 9"/>',
+    campana: '<path d="M6 9a6 6 0 0 1 12 0c0 6.5 3 8.5 3 8.5H3S6 15.5 6 9"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/>',
+    fuego: '<path d="M12 2.5c1 4 6 6 6 11.5a6 6 0 0 1-12 0c0-3 1.8-5 3-6 0 2 1 3 2.2 3C11.2 7 10.2 5.3 12 2.5z"/>',
+    gota: '<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>',
+    sube: '<path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/>',
+    equipo: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15.6 14.3A5 5 0 0 1 21.5 19"/>',
+    ticket: '<path d="M5 3h14v18l-2.3-1.6L14.3 21 12 19.4 9.7 21l-2.4-1.6L5 21z"/><path d="M9 8h6M9 12h6"/>',
+    barras: '<path d="M5 20V11M11 20V5M17 20v-7M2 20h20"/>',
+    trofeo: '<path d="M8 4h8v5a4 4 0 0 1-8 0z"/><path d="M8 6H4.5a3.5 3.5 0 0 0 3.6 4M16 6h3.5a3.5 3.5 0 0 1-3.6 4M12 13v4M8 21h8M10 17h4"/>',
+    pesa: '<path d="M6.5 7v10M3.5 9.5v5M17.5 7v10M20.5 9.5v5M6.5 12h11"/>'
+  };
+  function icono(n) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + I[n] + "</svg>";
+  }
+
   // Lo que "pasa" en cada módulo, en las dos tarjetas de vidrio.
   var momentos = {
-    inicio:     [["📅", "Junta con diseño", "Hoy · 16:00"], ["☀️", "7 pendientes hoy", "2 de alta prioridad"]],
-    pendientes: [["✅", "Pagar la tarjeta", "Hecho"], ["🔔", "Te avisamos", "30 min antes"]],
-    habitos:    [["🔥", "Racha de 7 días", "Meditar"], ["💧", "5 de 8 vasos", "Tomar agua"]],
-    proyectos:  [["📈", "Mudanza al 60%", "Faltan 15 días"], ["👥", "Espacio compartido", "Con tu equipo"]],
-    finanzas:   [["🧾", "Ticket leído", "$96.40 · Oxxo"], ["📊", "Balance del mes", "+$15,938"]],
-    ejercicio:  [["🏆", "Nuevo récord", "Press de banca"], ["💪", "2 de 3 sesiones", "Esta semana"]]
+    inicio:     [["calendario", "Junta con diseño", "Hoy · 16:00"], ["sol", "7 pendientes hoy", "2 de alta prioridad"]],
+    pendientes: [["hecho", "Pagar la tarjeta", "Hecho"], ["campana", "Te avisamos", "30 min antes"]],
+    habitos:    [["fuego", "Racha de 7 días", "Meditar"], ["gota", "5 de 8 vasos", "Tomar agua"]],
+    proyectos:  [["sube", "Mudanza al 60%", "Faltan 15 días"], ["equipo", "Espacio compartido", "Con tu equipo"]],
+    finanzas:   [["ticket", "Ticket leído", "$96.40 · Oxxo"], ["barras", "Balance del mes", "+$15,938"]],
+    ejercicio:  [["trofeo", "Nuevo récord", "Press de banca"], ["pesa", "2 de 3 sesiones", "Esta semana"]]
   };
 
   function video(mod) { return capas[mod] && capas[mod].querySelector("video"); }
@@ -97,7 +117,7 @@
     if (!m) return;
     insignias.forEach(function (el, i) {
       var d = m[i];
-      el.querySelector(".ico").textContent = d[0];
+      el.querySelector(".ico").innerHTML = icono(d[0]);
       el.querySelector("b").textContent = d[1];
       el.querySelector("i").textContent = d[2];
     });
@@ -151,7 +171,7 @@
       entradas.forEach(function (e) {
         if (e.isIntersecting) activar(e.target.dataset.modulo);
       });
-    }, { rootMargin: celular.matches ? "-62% 0px -30% 0px" : "-45% 0px -45% 0px" });
+    }, { rootMargin: celular.matches ? "-88% 0px -11% 0px" : "-45% 0px -45% 0px" });
     rec.querySelectorAll(".paso").forEach(function (p) { observador.observe(p); });
   }
   observar();
@@ -217,7 +237,7 @@
   rec.querySelectorAll(".paso").forEach(function (p) {
     g.from(p.querySelectorAll(".antetitulo, h2, li"), {
       autoAlpha: 0, y: 34, filter: "blur(10px)", duration: 0.95, ease: "power3.out", stagger: 0.09,
-      scrollTrigger: { trigger: p, start: movil ? "top 88%" : "top 72%", toggleActions: "play none none reverse" }
+      scrollTrigger: { trigger: p, start: movil ? "top 92%" : "top 72%", toggleActions: "play none none reverse" }
     });
   });
 
