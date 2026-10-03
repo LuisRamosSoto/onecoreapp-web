@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>OneCore — Tu día, en una sola app</title>
+<meta name="description" content="Pendientes, hábitos, proyectos, finanzas y entrenamientos en una sola app para iPhone.">
+<meta name="theme-color" content="#0b0b10">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="OneCore">
+<meta property="og:title" content="OneCore — Tu día, en una sola app">
+<meta property="og:description" content="Pendientes, hábitos, proyectos, finanzas y entrenamientos en una sola app para iPhone.">
+<meta property="og:image" content="https://onecoreapp.com.mx/img/og-general.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://onecoreapp.com.mx/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/img/icono-64.png">
+<link rel="apple-touch-icon" href="/img/icono-180.png">
+<link rel="stylesheet" href="/estilos.css">
+<link rel="stylesheet" href="/inicio.css">
+<link rel="preload" as="image" href="/img/videos/inicio.jpg">
+<!-- Al publicar la app: <meta name="apple-itunes-app" content="app-id=ID_DE_LA_APP"> -->
+</head>
+<body class="portada-nueva">
+<div class="contenedor ancho">
+  <header class="barra">
+    <a class="marca" href="/"><img src="/img/icono-64.png" alt="">OneCore</a>
+    <nav><a href="/pro/">Pro</a><a href="/ayuda/">Ayuda</a><a href="/soporte/">Soporte</a></nav>
+  </header>
+</div>
+
+<main>
+  <!-- El recorrido: el teléfono se queda quieto y cada módulo lo "abre" al
+       llegar a su sección, con videos reales de la app (cuenta demo). -->
+  <section class="recorrido" data-activo="inicio" aria-label="Recorrido por OneCore">
+    <div class="escenario" aria-hidden="true">
+      <div class="halo"></div>
+      <div class="telefono">
+        <div class="pantalla">
+          <div class="capa activa" data-modulo="inicio"><video muted playsinline loop preload="auto" poster="/img/videos/inicio.jpg" data-src="/img/videos/inicio.mp4"></video></div>
+          <div class="capa" data-modulo="pendientes"><video muted playsinline loop preload="none" poster="/img/videos/pendientes.jpg" data-src="/img/videos/pendientes.mp4"></video></div>
+          <div class="capa" data-modulo="habitos"><video muted playsinline loop preload="none" poster="/img/videos/habitos.jpg" data-src="/img/videos/habitos.mp4"></video></div>
+          <div class="capa" data-modulo="proyectos"><video muted playsinline loop preload="none" poster="/img/videos/proyectos.jpg" data-src="/img/videos/proyectos.mp4"></video></div>
+          <div class="capa" data-modulo="finanzas"><video muted playsinline loop preload="none" poster="/img/videos/finanzas.jpg" data-src="/img/videos/finanzas.mp4"></video></div>
+          <div class="capa" data-modulo="ejercicio"><video muted playsinline loop preload="none" poster="/img/videos/ejercicio.jpg" data-src="/img/videos/ejercicio.mp4"></video></div>
+          <span class="toque"></span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="indice-modulos" aria-label="Módulos">
+      <a href="#inicio" data-modulo="inicio" class="activo">Inicio</a>
+      <a href="#pendientes" data-modulo="pendientes">Pendientes</a>
+      <a href="#habitos" data-modulo="habitos">Hábitos</a>
+      <a href="#proyectos" data-modulo="proyectos">Proyectos</a>
+      <a href="#finanzas" data-modulo="finanzas">Finanzas</a>
+      <a href="#ejercicio" data-modulo="ejercicio">Ejercicio</a>
+    </nav>
+
+    <div class="pasos">
+      <article class="paso paso-portada" id="inicio" data-modulo="inicio">
+        <p class="antetitulo">Para iPhone</p>
+        <h1>Tu día, en una sola app</h1>
+        <p class="entrada">Pendientes, hábitos, proyectos, finanzas y entrenamientos, juntos y sincronizados. Abre OneCore y ves lo que sigue.</p>
+        <div class="acciones">
+          <a class="boton apagado" data-app-store>Próximamente en la App Store</a>
+          <a class="boton secundario" data-beta>Probar la beta</a>
+        </div>
+        <form class="lista" data-lista>
+          <input type="email" name="correo" required placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo">
+          <input type="text" name="sitio" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button type="submit">Avísame</button>
+          <label class="casilla"><input type="checkbox" name="beta"> También quiero probar la beta</label>
+          <p class="aviso" data-aviso></p>
+        </form>
+        <p class="sigue">Desliza para ver cada módulo</p>
+      </article>
+
+      <article class="paso" id="pendientes" data-modulo="pendientes">
+        <p class="antetitulo">Pendientes</p>
+        <h2>Todo lo que tienes que hacer, en orden</h2>
+        <ul>
+          <li>Fechas, prioridades y avisos a la hora que eliges.</li>
+          <li>Hoy, esta semana o por proyecto, sin perder nada.</li>
+          <li>Apúntalo dictándolo, desde un widget o con el botón de Acción.</li>
+        </ul>
+      </article>
+
+      <article class="paso" id="habitos" data-modulo="habitos">
+        <p class="antetitulo">Hábitos</p>
+        <h2>Rachas que dan ganas de cuidar</h2>
+        <ul>
+          <li>Un toque para marcarlo, y tu racha sube.</li>
+          <li>Metas por día o por semana, como vasos de agua o minutos.</li>
+          <li>La semana a la vista: qué días cumpliste.</li>
+        </ul>
+      </article>
+
+      <article class="paso" id="proyectos" data-modulo="proyectos">
+        <p class="antetitulo">Proyectos</p>
+        <h2>Proyectos que avanzan</h2>
+        <ul>
+          <li>Cuánto falta y qué sigue en cada proyecto.</li>
+          <li>Hitos, tablero y actividad con calendario.</li>
+          <li>Comparte un espacio con tu equipo.</li>
+        </ul>
+      </article>
+
+      <article class="paso" id="finanzas" data-modulo="finanzas">
+        <p class="antetitulo">Finanzas</p>
+        <h2>Sabes a dónde se va tu dinero</h2>
+        <ul>
+          <li>Balance del mes, ingresos y gastos de un vistazo.</li>
+          <li>En qué gastas, por categoría y mes contra mes.</li>
+          <li>Toma la foto del ticket y el gasto se llena solo.</li>
+        </ul>
+      </article>
+
+      <article class="paso" id="ejercicio" data-modulo="ejercicio">
+        <p class="antetitulo">Ejercicio</p>
+        <h2>Entrena con un plan</h2>
+        <ul>
+          <li>Tus rutinas, series y récords en un solo lugar.</li>
+          <li>Calendario de entrenos y tu volumen de la semana.</li>
+          <li>Grupos para entrenar y retarte con tu gente.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="contenedor ancho">
+    <section class="conectado">
+      <h2>Y todo conectado</h2>
+      <div class="rejilla">
+        <div class="bloque"><h3>Widgets</h3><p>Lo que sigue hoy, en tu pantalla de inicio y de bloqueo.</p></div>
+        <div class="bloque"><h3>Atajos y botón de Acción</h3><p>Apunta un pendiente o un gasto sin abrir la app.</p></div>
+        <div class="bloque"><h3>Sincronizado</h3><p>Tus datos te siguen entre tus dispositivos.</p></div>
+        <div class="bloque"><h3>Privado</h3><p>No vendemos tus datos ni mostramos anuncios.</p></div>
+      </div>
+    </section>
+
+    <section class="tarjeta">
+      <h2 style="margin-top:0">Gratis para empezar. Pro cuando lo necesites.</h2>
+      <p>Pendientes y notas sin límite en el plan gratis. Con Pro, todo sin límites, tu historial completo, grupos y espacios compartidos.</p>
+      <a class="boton secundario" href="/pro/">Ver OneCore Pro</a>
+    </section>
+
+    <section class="cierre">
+      <h2>¿Te avisamos cuando salga?</h2>
+      <form class="lista" data-lista>
+        <input type="email" name="correo" required placeholder="tu@correo.com" autocomplete="email" aria-label="Tu correo">
+        <input type="text" name="sitio" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button type="submit">Avísame</button>
+        <label class="casilla"><input type="checkbox" name="beta"> También quiero probar la beta</label>
+        <p class="aviso" data-aviso></p>
+      </form>
+    </section>
+
+    <footer>
+      <a href="/ayuda/">Ayuda</a><a href="/pro/">OneCore Pro</a><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a>
+      <span>© 2026 OneCore</span>
+    </footer>
+  </div>
+</main>
+<script src="/app.js"></script>
+<script src="/recorrido.js"></script>
+</body>
+</html>
