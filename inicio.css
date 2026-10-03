@@ -103,6 +103,10 @@ body.portada-nueva {
   overflow: hidden;
   background: #0b0b10;
   isolation: isolate;
+  /* Recorte que Safari respeta aunque los hijos se muevan o el teléfono gire. */
+  clip-path: inset(0 round calc(var(--ancho) * 0.14));
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  transform: translateZ(0);
 }
 .capa {
   position: absolute;
@@ -407,8 +411,12 @@ body.portada-nueva {
 
 /* El teléfono en 3D */
 .escenario { perspective: 1400px; }
-.entrada-telefono { position: relative; transform-style: preserve-3d; will-change: transform; }
-.telefono { transform-style: preserve-3d; will-change: transform; }
+/* Sin preserve-3d en los hijos: Safari deja de recortar con overflow +
+   border-radius dentro de un contexto 3D y la pantalla se salía del marco
+   por las esquinas. La inclinación funciona igual (la perspectiva la pone
+   .escenario). */
+.entrada-telefono { position: relative; transform-style: flat; will-change: transform; }
+.telefono { transform-style: flat; will-change: transform; }
 .brillo {
   position: absolute;
   inset: 0;
@@ -622,29 +630,7 @@ main, .cabecera { position: relative; z-index: 1; }
   opacity: 0.55;
 }
 
-/* La palabra gigante del módulo, detrás de todo. */
-.palabra-fondo {
-  position: fixed;
-  z-index: 0;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-  margin: 0;
-  font-size: clamp(120px, 17vw, 290px);
-  font-weight: 900;
-  letter-spacing: -0.055em;
-  line-height: 1;
-  white-space: nowrap;
-  color: transparent;
-  -webkit-text-stroke: 1.2px color-mix(in srgb, var(--mod) 26%, transparent);
-  background: linear-gradient(180deg, color-mix(in srgb, var(--mod) 7%, transparent), transparent 75%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-body.en-recorrido .palabra-fondo { opacity: 1; }
+
 
 @media (max-width: 860px) {
   .tramo.principal { min-height: 62svh; padding: 20px 0 10svh; justify-content: flex-start; }
@@ -652,7 +638,6 @@ body.en-recorrido .palabra-fondo { opacity: 1; }
   .apartado::before { top: 18px; }
   .apartado p { font-size: 16px; }
   .pestanas button { font-size: 13px; padding: 6px 11px; }
-  .palabra-fondo { display: none; }
   .orbe { filter: blur(60px); opacity: 0.12; }
   .puntos { opacity: 0.35; }
 }

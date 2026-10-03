@@ -6,7 +6,7 @@
 //    teléfono hace un "toque" donde la app tiene ese botón —el de módulos
 //    para cambiar de módulo, la pestaña del apartado para entrar a él— y
 //    pasa a esa pantalla con su video. Al cambiar de módulo cambian también
-//    el color, la palabra gigante del fondo y las tarjetas flotantes.
+//    el color del fondo y las tarjetas flotantes.
 // 2. Efectos (si cargó GSAP y no se pidió reducir movimiento): el título se
 //    enfoca al abrir; al bajar se disuelve mientras el teléfono sube girando
 //    en 3D; el teléfono se inclina con el ratón; los textos entran
@@ -50,7 +50,6 @@
   var toque = rec.querySelector(".toque");
   var indice = rec.querySelector(".indice-modulos");
   var insignias = rec.querySelectorAll(".insignia");
-  var palabra = rec.querySelector(".palabra-fondo");
   var activa = null;      // capa a la vista
   var modulo = null;      // módulo de esa capa
   var pendiente = null;
@@ -110,7 +109,7 @@
     if (v && !v.paused) v.pause();
   }
 
-  // Lo que depende del módulo: color, índice, palabra, tarjetas, pasos.
+  // Lo que depende del módulo: color, índice, tarjetas, pasos.
   function marcarModulo(mod) {
     document.body.dataset.mod = mod;
     rec.dataset.activo = mod;
@@ -120,17 +119,6 @@
     if (indice) indice.querySelectorAll("a").forEach(function (a) {
       a.classList.toggle("activo", a.dataset.modulo === mod);
     });
-    if (palabra) {
-      var nombre = (rec.querySelector('.paso[data-modulo="' + mod + '"] .antetitulo') || {}).textContent || "";
-      if (g) {
-        g.to(palabra, { autoAlpha: 0, scale: 0.96, duration: 0.25, ease: "power2.in", overwrite: true, onComplete: function () {
-          palabra.textContent = nombre;
-          g.to(palabra, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power3.out" });
-        } });
-      } else {
-        palabra.textContent = nombre;
-      }
-    }
     contarInsignias(mod);
   }
 
@@ -215,7 +203,7 @@
   observar();
   if (celular.addEventListener) celular.addEventListener("change", observar);
 
-  // Mientras el recorrido ocupa la pantalla: índice y palabra visibles, video
+  // Mientras el recorrido ocupa la pantalla: índice visible y video
   // en marcha. Fuera de él, todo en pausa.
   new IntersectionObserver(function (entradas) {
     var dentro = entradas[0].isIntersecting;
@@ -287,11 +275,7 @@
     });
   });
 
-  // La palabra del fondo se desplaza un poco al bajar: da profundidad.
-  g.fromTo(".palabra-fondo", { yPercent: 8 }, {
-    yPercent: -8, ease: "none",
-    scrollTrigger: { trigger: rec, start: "top bottom", end: "bottom top", scrub: true }
-  });
+
 
   // El teléfono se inclina siguiendo el ratón, con un brillo que lo sigue.
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
