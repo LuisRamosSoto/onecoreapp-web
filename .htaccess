@@ -28,3 +28,6 @@ RewriteRule ^invita/[A-Za-z0-9]+/?$ /invita/index.html [L]
     Header set Content-Type "application/json"
   </IfModule>
 </Files>
+
+# La vista previa de la portada nueva ya es la portada.
+Redirect 301 /nuevo/ https://onecoreapp.com.mx/
