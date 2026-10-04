@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correo confirmado — OneCore</title>
+<meta name="description" content="Tu correo de OneCore quedó confirmado.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#6c5ce7">
+<link rel="icon" href="/img/icono-64.png">
+<link rel="apple-touch-icon" href="/img/icono-180.png">
+<link rel="stylesheet" href="/estilos.css">
+<script>
+  // A esta página llega el enlace del correo de confirmación (es el Site URL
+  // de Supabase). Lo que trae la dirección se lee y se borra enseguida: puede
+  // venir una sesión (#access_token=…) que no debe quedarse en el historial
+  // ni en una captura.
+  (function () {
+    var datos = new URLSearchParams(location.search + "&" + location.hash.slice(1));
+    window.__fallo = datos.get("error_code") || datos.get("error") || "";
+    if (location.search || location.hash) history.replaceState(null, "", location.pathname);
+  })();
+</script>
+</head>
+<body>
+<div class="contenedor">
+  <header class="barra">
+    <a class="marca" href="/"><img src="/img/icono-64.png" alt="">OneCore</a>
+    <nav><a href="/pro/">Pro</a><a href="/ayuda/">Ayuda</a><a href="/soporte/">Soporte</a></nav>
+  </header>
+  <main class="documento">
+<div class="tarjeta" id="bien">
+  <img src="/img/icono-180.png" alt="" width="84" height="84" style="border-radius:20px">
+  <h1 style="margin-top:16px">¡Listo! Tu correo quedó confirmado</h1>
+  <p>Vuelve a OneCore e inicia sesión con tu correo y tu contraseña.</p>
+  <div class="acciones" data-solo-iphone style="display:none"><a class="boton" href="onecore://">Abrir OneCore</a></div>
+</div>
+<div class="tarjeta" id="mal" hidden>
+  <img src="/img/icono-180.png" alt="" width="84" height="84" style="border-radius:20px">
+  <h1 style="margin-top:16px">Este enlace ya no sirve</h1>
+  <p>Caducó o ya se usó. Si ya habías confirmado tu correo, inicia sesión
+  normalmente en OneCore.</p>
+  <ol class="pasos">
+    <li>Si no, abre OneCore y crea tu cuenta otra vez con el mismo correo.</li>
+    <li>Te llegará un correo nuevo: tócalo pronto, que caduca.</li>
+  </ol>
+  <div class="acciones" data-solo-iphone style="display:none;margin-top:20px"><a class="boton" href="onecore://">Abrir OneCore</a></div>
+</div>
+<script>
+  if (window.__fallo) {
+    document.getElementById("bien").hidden = true;
+    document.getElementById("mal").hidden = false;
+  }
+  // onecore:// solo abre algo en un iPhone o iPad con la app.
+  var esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (esIOS) document.querySelectorAll("[data-solo-iphone]").forEach(function (e) { e.style.display = "flex"; });
+</script>
+  </main>
+  <footer>
+    <a href="/ayuda/">Ayuda</a><a href="/pro/">OneCore Pro</a><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a>
+    <span>© 2026 OneCore</span>
+  </footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
