@@ -18,6 +18,9 @@
   (function () {
     var datos = new URLSearchParams(location.search + "&" + location.hash.slice(1));
     window.__fallo = datos.get("error_code") || datos.get("error") || "";
+    // Con PKCE trae ?code=…: de vuelta en la app (el mismo iPhone que se
+    // registró) se canjea por la sesión y entra sin escribir la contraseña.
+    window.__codigo = (datos.get("code") || "").replace(/[^A-Za-z0-9_-]/g, "");
     if (location.search || location.hash) history.replaceState(null, "", location.pathname);
   })();
 </script>
@@ -32,8 +35,8 @@
 <div class="tarjeta" id="bien">
   <img src="/img/icono-180.png" alt="" width="84" height="84" style="border-radius:20px">
   <h1 style="margin-top:16px">¡Listo! Tu correo quedó confirmado</h1>
-  <p>Vuelve a OneCore e inicia sesión con tu correo y tu contraseña.</p>
-  <div class="acciones" data-solo-iphone style="display:none"><a class="boton" href="onecore://">Abrir OneCore</a></div>
+  <p id="siguiente">Vuelve a OneCore e inicia sesión con tu correo y tu contraseña.</p>
+  <div class="acciones" data-solo-iphone style="display:none"><a class="boton" id="entrar" href="onecore://">Abrir OneCore</a></div>
 </div>
 <div class="tarjeta" id="mal" hidden>
   <img src="/img/icono-180.png" alt="" width="84" height="84" style="border-radius:20px">
@@ -55,6 +58,11 @@
   var esIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   if (esIOS) document.querySelectorAll("[data-solo-iphone]").forEach(function (e) { e.style.display = "flex"; });
+  if (esIOS && window.__codigo && !window.__fallo) {
+    document.getElementById("entrar").href = "onecore://auth-callback?code=" + window.__codigo;
+    document.getElementById("siguiente").textContent =
+      "Toca el botón para volver a OneCore con tu sesión iniciada. Si no entra sola, inicia sesión con tu correo y tu contraseña.";
+  }
 </script>
   </main>
   <footer>
