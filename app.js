@@ -1,11 +1,14 @@
 // OneCore — lo que comparten todas las páginas.
 //
 // Lo que cambia con el lanzamiento está arriba, en un solo sitio:
-//   APP_STORE_ID  el número de la app en la App Store (sale al publicarla).
+//   EN_TIENDA     true el día que la app salga en la App Store: los botones
+//                 pasan de "Próximamente" a "Descargar". Es lo único que hay
+//                 que cambiar al lanzar.
+//   APP_STORE_ID  el ID de Apple de la app (ya asignado: 6800421484).
 //   TESTFLIGHT    el enlace público de la beta en TestFlight.
-// Con ellos vacíos, los botones dicen "Próximamente" y la beta no se ofrece.
 var ONECORE = {
-  APP_STORE_ID: "",
+  EN_TIENDA: false,
+  APP_STORE_ID: "6800421484",
   TESTFLIGHT: "",
   // La clave pública de Supabase (la misma que lleva la app). Solo puede
   // llamar a la lista de espera: nada más es escribible sin sesión.
@@ -16,7 +19,7 @@ var ONECORE = {
 (function () {
   // Botones de la App Store: con el ID, enlazan a la ficha; sin él, se quedan
   // en "Próximamente en la App Store" y no son pulsables.
-  var tienda = ONECORE.APP_STORE_ID
+  var tienda = ONECORE.EN_TIENDA && ONECORE.APP_STORE_ID
     ? "https://apps.apple.com/app/id" + ONECORE.APP_STORE_ID : "";
   document.querySelectorAll("[data-app-store]").forEach(function (el) {
     if (!tienda) return;

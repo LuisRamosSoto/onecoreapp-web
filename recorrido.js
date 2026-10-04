@@ -27,7 +27,7 @@
   // ---------------------------------------------------------------- tienda
   // El botón grande de la App Store: con el ID publicado, se enciende.
   var tienda = document.querySelector("[data-tienda]");
-  if (tienda && window.ONECORE && ONECORE.APP_STORE_ID) {
+  if (tienda && window.ONECORE && ONECORE.EN_TIENDA && ONECORE.APP_STORE_ID) {
     tienda.href = "https://apps.apple.com/app/id" + ONECORE.APP_STORE_ID;
     tienda.classList.remove("apagado");
     var arriba = tienda.querySelector("[data-tienda-arriba]");
