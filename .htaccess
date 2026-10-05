@@ -3,6 +3,17 @@ Options -Indexes
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
+# Cabeceras de seguridad. Sin HSTS, el primer acceso por http podía
+# interceptarse antes de la redirección; sin las otras, la web se podía meter
+# en un iframe ajeno o el navegador adivinar tipos de archivo.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
 RewriteEngine On
 
 # Siempre por HTTPS.
