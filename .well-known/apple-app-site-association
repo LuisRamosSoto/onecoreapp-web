@@ -11,6 +11,10 @@
             "comment": "Invitaciones a grupos de entreno"
           },
           {
+            "/": "/p/*",
+            "comment": "Invitaciones a proyectos"
+          },
+          {
             "/": "/invita/*",
             "comment": "Invitaciones a OneCore (código de quien invita)"
           }
