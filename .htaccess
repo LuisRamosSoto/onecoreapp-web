@@ -16,6 +16,11 @@ ErrorDocument 404 /404.html
 
 RewriteEngine On
 
+# El sitio es solo HTML: ningún archivo PHP se ejecuta, aunque apareciera uno
+# en el servidor. El intérprete del hosting sigue activo y lo parchea
+# Hostinger, a su ritmo (php2shell, oct. 2026); así no depende de eso.
+RewriteRule \.(php[0-9]?|phtml|phar)$ - [F,NC,L]
+
 # Siempre por HTTPS.
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
