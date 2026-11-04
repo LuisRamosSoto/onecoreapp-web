@@ -4,18 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aviso de privacidad — OneCore</title>
-<meta name="description" content="Qué datos guarda OneCore, para qué y cómo borrarlos.">
+<meta name="description" content="Qué datos trata OneCore, para qué, con quién se comparten, cuánto tiempo se guardan y cómo ejercer tus derechos.">
 <meta name="theme-color" content="#6c5ce7">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="fr_CA">
 <meta property="og:site_name" content="OneCore">
 <meta property="og:title" content="Aviso de privacidad — OneCore">
-<meta property="og:description" content="Qué datos guarda OneCore, para qué y cómo borrarlos.">
+<meta property="og:description" content="Qué datos trata OneCore, para qué, con quién se comparten, cuánto tiempo se guardan y cómo ejercer tus derechos.">
 <meta property="og:image" content="https://onecoreapp.com.mx/img/og-general.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://onecoreapp.com.mx/privacidad/">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://onecoreapp.com.mx/privacidad/">
+<link rel="alternate" hreflang="es" href="https://onecoreapp.com.mx/privacidad/">
+<link rel="alternate" hreflang="en" href="https://onecoreapp.com.mx/en/privacy/">
+<link rel="alternate" hreflang="fr" href="https://onecoreapp.com.mx/fr/confidentialite/">
 <link rel="icon" href="/img/icono-64.png">
 <link rel="apple-touch-icon" href="/img/icono-180.png">
 <link rel="stylesheet" href="/estilos.css">
@@ -28,114 +34,481 @@
     <nav><a href="/pro/">Pro</a><a href="/ayuda/">Ayuda</a><a href="/soporte/">Soporte</a></nav>
   </header>
   <main class="documento">
+<p><small><b aria-current="page">ES</b> · <a href="/en/privacy/" hreflang="en" lang="en">EN</a> · <a href="/fr/confidentialite/" hreflang="fr" lang="fr">FR</a></small></p>
 <h1>Aviso de privacidad — OneCore</h1>
-<small>Última actualización: 2 de octubre de 2026</small>
+<small>Última actualización: 3 de noviembre de 2026</small>
 
-<p>OneCore es una app para organizar tus pendientes, hábitos, proyectos,
-finanzas y entrenamientos. Este aviso explica qué datos guarda, para qué,
-con quién se comparten y cómo puedes borrarlos. No vendemos tus datos ni los
-usamos para publicidad.</p>
+<p>OneCore es una app para iPhone y Apple Watch que reúne pendientes, hábitos,
+notas, proyectos, finanzas personales y entrenamientos. Este aviso explica qué
+datos personales tratamos, para qué, con qué fundamento, con quién se comparten,
+cuánto tiempo se guardan y cómo ejercer tus derechos. Se aplica a la app, a sus
+widgets y a su app del reloj, y a este sitio web.</p>
 
-<h2>1. Qué datos guardamos</h2>
-<ul>
-<li><b>Tu cuenta</b>: nombre y correo electrónico. Si entras con Apple o
-Google, recibimos el nombre y el correo que esos servicios nos dan.</li>
-<li><b>Lo que creas en la app</b>: pendientes, proyectos, hábitos y sus
-registros, notas, eventos, recordatorios, rutinas y series de ejercicio,
-cuentas, movimientos, presupuestos y préstamos. Se guardan en tu teléfono y
-en nuestro servidor para que los tengas en todos tus dispositivos.</li>
-<li><b>Fotos de tickets</b>: si adjuntas la foto de un ticket a un
-movimiento, se guarda como comprobante en un espacio privado de tu cuenta.</li>
-<li><b>Datos de uso</b>: eventos sencillos como "abrió la app" o "creó un
-pendiente", ligados a tu cuenta, para entender qué partes de la app se usan.
-Nunca incluyen títulos ni contenido. Puedes apagarlos en
-<i>Ajustes › Privacidad › Compartir datos de uso</i> (Ajustes se abre con el ícono de perfil de Inicio).</li>
-<li><b>Avisos</b>: si permites las notificaciones, guardamos el identificador
-de notificaciones de tu teléfono para mandarte los avisos de tus grupos de
-entrenamiento.</li>
-<li><b>Suscripción</b>: si te suscribes a OneCore Pro, Apple nos confirma la
-compra (producto, fechas y estado). Nunca vemos tus datos de pago: el cobro lo
-hace Apple.</li>
+<p><b>En corto:</b> no vendemos tus datos, no hay publicidad ni rastreo entre
+apps o sitios, y no usamos SDK de terceros para medir lo que haces. Lo que
+creas se guarda en tu teléfono y en nuestro servidor para sincronizarlo. Varias
+cosas se procesan solo en tu iPhone y nunca nos llegan (estados de cuenta que
+importas, lecturas de Apple Salud, dictado, Calendario). Puedes borrar tu
+cuenta y todos tus datos desde la app en cualquier momento.</p>
+
+<ul class="indice">
+  <li><a href="#responsable">1. Responsable</a></li>
+  <li><a href="#datos">2. Datos que tratamos</a></li>
+  <li><a href="#sensibles">3. Datos sensibles</a></li>
+  <li><a href="#local">4. Lo que se queda en tu teléfono</a></li>
+  <li><a href="#finalidades">5. Finalidades</a></li>
+  <li><a href="#consentimiento">6. Consentimiento y revocación</a></li>
+  <li><a href="#compartir">7. Con quién se comparten</a></li>
+  <li><a href="#conservacion">8. Cuánto tiempo los guardamos</a></li>
+  <li><a href="#derechos">9. Tus derechos</a></li>
+  <li><a href="#quejas">10. Quejas y autoridades</a></li>
+  <li><a href="#menores">11. Menores de edad</a></li>
+  <li><a href="#seguridad">12. Seguridad y brechas</a></li>
+  <li><a href="#salud">13. Datos de salud (EE. UU.)</a></li>
+  <li><a href="#residentes">14. Para residentes de…</a></li>
+  <li><a href="#cambios">15. Cambios a este aviso</a></li>
+  <li><a href="#contacto">16. Contacto</a></li>
 </ul>
 
-<h2>2. Lo que se procesa y no guardamos</h2>
+<h2 id="responsable">1. Quién es el responsable</h2>
+<p>El responsable del tratamiento de tus datos es <b>Luis Arturo Ramos Soto</b>, persona física con domicilio en <b>Ciudad Juárez, Chihuahua, C.P. 32360</b>, México,
+que desarrolla y opera OneCore ("nosotros").</p>
 <ul>
-<li><b>Dictado</b>: cuando dictas un pendiente o un gasto, el reconocimiento
-de voz de Apple lo convierte en texto en tu iPhone. OneCore no recibe ni
-guarda el audio; solo el texto que confirmas.</li>
-<li><b>Lectura de tickets</b>: si pides leer un ticket, la foto se envía a
-OpenAI para extraer el importe, el comercio y la fecha. OpenAI la procesa en
-ese momento para devolver el resultado; no la usamos para entrenar modelos.
-La primera vez te preguntamos antes de enviar nada, y puedes apagarlo cuando
-quieras en <b>Ajustes › Privacidad › Leer tickets con IA</b>; apagado, la foto
-se guarda como comprobante sin leerse.</li>
-<li><b>Calendario y Recordatorios de Apple</b>: si los conectas, se leen en tu
-teléfono para mostrarlos en OneCore. No se suben a nuestro servidor.</li>
+<li><b>Contacto para privacidad y derechos</b>:
+<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>.
+Esta misma persona atiende las solicitudes de datos personales y es la
+responsable de la protección de los datos personales (incluido el sentido de la
+ley de Quebec).</li>
 </ul>
 
-<h2>3. Para qué los usamos</h2>
+<h2 id="datos">2. Qué datos tratamos</h2>
+<p>Solo tratamos lo que hace falta para que cada función sirva. Esto es lo que
+se guarda en nuestro servidor, por módulo:</p>
+
+<h3>Cuenta</h3>
 <ul>
-<li>Hacer funcionar la app y sincronizar tus datos entre dispositivos.</li>
-<li>Mandarte los recordatorios y avisos que tú configuras.</li>
-<li>Saber si tienes OneCore Pro y aplicar los límites del plan gratis.</li>
-<li>Mejorar la app a partir de los datos de uso, si no los apagaste.</li>
+<li>Nombre, correo electrónico e identificador de cuenta. Si entras con Apple o
+con Google, recibimos el nombre y el correo que ese servicio nos comparte (con
+Apple puede ser un correo de reenvío que oculta el tuyo).</li>
+<li>Preferencias de la app (idioma, moneda, módulos activos, avisos).</li>
+<li>Invitaciones: tu código de invitación, quién te invitó y cuántas personas
+se unieron con el tuyo. No hay premios ni pagos por invitar.</li>
 </ul>
 
-<h2>4. Con quién se comparten</h2>
-<p>Solo con los proveedores que hacen falta para que la app funcione:</p>
+<h3>Pendientes, hábitos, notas y proyectos</h3>
 <ul>
-<li><b>Supabase</b>: aloja la base de datos, los archivos y el inicio de sesión.</li>
-<li><b>OpenAI</b>: solo las fotos de tickets que pides leer.</li>
-<li><b>Apple</b>: inicio de sesión con Apple, compras, avisos y reconocimiento de voz.</li>
-<li><b>Google</b>: solo si inicias sesión con Google.</li>
+<li>Lo que escribes: pendientes, listas, notas, comentarios, eventos,
+cuentas regresivas, hábitos y sus registros, proyectos, hitos, tiempo
+registrado y archivos que adjuntas.</li>
+<li>Espacios y proyectos compartidos: quién es miembro, su papel y la
+actividad dentro de ese espacio o proyecto.</li>
 </ul>
-<p>Y con las personas que tú eliges:</p>
+
+<h3>Finanzas</h3>
+<ul>
+<li>Cuentas, tarjetas, movimientos, etiquetas, presupuestos, metas de ahorro,
+préstamos y sus pagos, compras a meses, deducibles y finanzas del hogar
+compartidas con quien tú invites.</li>
+<li>Fotos de tickets que adjuntas a un movimiento, guardadas como comprobante
+en un espacio privado de tu cuenta.</li>
+<li>Movimientos que importas de un estado de cuenta o de una captura de
+pantalla. El archivo del estado se lee en tu iPhone y no se sube; solo se
+guardan los movimientos que tú confirmas.</li>
+<li>No pedimos ni guardamos contraseñas bancarias, números completos de
+tarjeta ni datos de pago. No nos conectamos a tu banco.</li>
+</ul>
+
+<h3>Ejercicio</h3>
+<ul>
+<li>Rutinas, planes, entrenamientos, series, cargas, repeticiones y récords.</li>
+<li>Peso corporal, si lo apuntas o lo traes de Apple Salud.</li>
+<li>Fotos de progreso, en un espacio privado de tu cuenta que solo tú ves.</li>
+<li>Sexo (opcional), solo para calcular tus puntos DOTS.</li>
+<li>Grupos de entrenamiento: pertenencia, puntos, posición en la liga, retos,
+duelos, reacciones y empujoncitos entre miembros.</li>
+</ul>
+
+<h3>Avisos, compras y soporte</h3>
+<ul>
+<li>Avisos push: el identificador de notificaciones de tu dispositivo (de
+Apple) y tus preferencias de aviso.</li>
+<li>OneCore Pro: Apple nos confirma la compra (producto, fechas, estado,
+identificador de la transacción y país de la tienda). Nunca vemos tu tarjeta ni
+tus datos de pago: el cobro lo hace Apple.</li>
+<li>Soporte: los mensajes que nos mandas y lo que incluyas en ellos.</li>
+</ul>
+
+<h3>Datos de uso (analítica propia)</h3>
+<ul>
+<li>Eventos sencillos como "abrió la app" o "creó un pendiente", con la
+versión de la app, ligados a tu cuenta. Nunca incluyen títulos, textos,
+importes ni fotos. Se guardan en nuestra propia base de datos (Supabase); no
+usamos herramientas de analítica ni publicidad de terceros.</li>
+<li>Puedes apagarlos en <i>Ajustes › Privacidad › Compartir datos de uso</i>
+(Ajustes se abre con el ícono de perfil de Inicio).</li>
+</ul>
+
+<h3>Sitio web</h3>
+<ul>
+<li>Lista de espera: si nos dejas tu correo, guardamos el correo, desde qué
+página te apuntaste y si quieres probar versiones beta.</li>
+<li>El servidor que aloja el sitio registra datos técnicos de cada visita
+(dirección IP, navegador, página y hora) para funcionar y protegerse de
+abusos. El sitio no usa cookies de rastreo ni analítica de terceros.</li>
+</ul>
+
+<h2 id="sensibles">3. Datos sensibles</h2>
+<p>Algunos datos merecen más cuidado porque, mal usados, podrían afectarte. Los
+tratamos solo para la función que pides, nunca para publicidad ni para
+perfilarte, y no se muestran a otras personas salvo lo que se explica abajo
+para los grupos.</p>
+<ul>
+<li><b>Peso corporal</b> y su historial.</li>
+<li><b>Fotos de progreso</b> (fotos de tu cuerpo).</li>
+<li><b>Sexo</b>, si decides darlo para los puntos DOTS.</li>
+<li><b>Datos de Apple Salud</b>: pasos, distancia, minutos de ejercicio,
+entrenos y peso. Se leen en tu iPhone. De Salud solo se guarda en tu cuenta
+el peso que traes con "Traer de Salud" y, si conectas un hábito a Salud, el
+registro de que lo cumpliste (lo mismo que si lo marcaras a mano).</li>
+<li><b>Datos financieros y patrimoniales</b>: cuentas, movimientos, saldos,
+préstamos, metas y fotos de tickets.</li>
+</ul>
+<p>Para tratarlos te pedimos tu consentimiento expreso cuando empiezas a usar
+cada función: al dar tu peso o tu sexo, al guardar tu primera foto de progreso
+y al conectar Salud (con el permiso de Apple). La primera vez que abres
+Finanzas te explicamos qué se guarda. Todos son
+opcionales: puedes usar el resto de la app sin darlos. Puedes borrar tus datos
+del cuerpo de una vez en <i>Ajustes › Privacidad › Borrar mis datos del
+cuerpo</i>, borrar cualquier dato suelto desde la app o borrar tu cuenta
+entera.</p>
+<p>En los grupos de entrenamiento los demás miembros ven tu nombre, tus puntos,
+tus totales y tus récords del grupo. <b>Nunca</b> ven tu peso, tus fotos ni el
+detalle de tus series. Los puntos DOTS se calculan con tu peso y tu sexo, y solo
+se comparte el resultado. Si diste tu sexo, en la comparación "cara a cara" tu
+figura se dibuja como hombre o como mujer, así que quien la abra puede
+deducirlo; si no quieres, no lo des o bórralo en <i>Ajustes › Privacidad</i>.
+Fuera de los grupos, nadie más ve tu sexo.</p>
+
+<h2 id="local">4. Lo que se procesa en tu teléfono y no nos llega</h2>
+<ul>
+<li><b>Estados de cuenta</b> (PDF o capturas) que importas: se leen en tu
+iPhone. Solo se guardan los movimientos que confirmas.</li>
+<li><b>Apple Salud</b>: pasos, minutos y entrenos se leen en tu iPhone y no se
+suben (salvo lo indicado arriba sobre el peso y los hábitos). Si activas
+"Guardar en Salud", OneCore escribe tus entrenos y minutos de enfoque en Salud,
+que es local.</li>
+<li><b>Dictado</b>: lo convierte en texto el reconocimiento de voz de Apple.
+OneCore no guarda el audio; solo el texto que confirmas.</li>
+<li><b>Calendario y Recordatorios de Apple</b>: se leen en tu teléfono para
+mostrarlos en OneCore. No se suben.</li>
+<li><b>Avisos por lugar</b>: los dispara iOS al llegar o salir de un sitio. La
+app no sigue tu ubicación y el sitio se guarda solo en tu teléfono.</li>
+<li><b>Widgets, Apple Watch, Siri y Atajos</b>: usan una copia en tu
+dispositivo. Puedes ocultar los importes en los widgets.</li>
+<li><b>Copias de seguridad</b> (Pro): el archivo se crea en tu teléfono y tú
+decides dónde guardarlo.</li>
+</ul>
+
+<h2 id="finalidades">5. Para qué usamos tus datos</h2>
+<h3>Finalidades primarias (necesarias para darte el servicio)</h3>
+<ul>
+<li>Crear y administrar tu cuenta e iniciar sesión.</li>
+<li>Guardar y sincronizar tu contenido entre tus dispositivos.</li>
+<li>Hacer funcionar cada módulo: pendientes, hábitos, finanzas, ejercicio,
+proyectos, espacios compartidos y grupos (incluidos los puntos y la liga).</li>
+<li>Leer tickets con IA cuando tú lo pides.</li>
+<li>Mandarte los recordatorios y avisos que configuras.</li>
+<li>Saber si tienes OneCore Pro, aplicar los límites del plan gratis y
+verificar las compras con Apple.</li>
+<li>Atender tus mensajes de soporte y tus solicitudes de derechos.</li>
+<li>Mantener la seguridad, prevenir abusos y fraudes, y cumplir obligaciones
+legales.</li>
+</ul>
+<h3>Finalidades secundarias (no son necesarias para el servicio)</h3>
+<ul>
+<li>Medir de forma agregada qué partes de la app se usan para mejorarla
+(analítica propia).</li>
+<li>Avisarte por correo cuando la app esté disponible o haya una beta, si te
+apuntaste a la lista de espera.</li>
+</ul>
+<p><b>Cómo oponerte a las finalidades secundarias:</b> apaga <i>Ajustes ›
+Privacidad › Compartir datos de uso</i>, o escríbenos a
+<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>
+pidiendo que no usemos tus datos para estos fines o que te saquemos de la lista
+de espera. Negarte no afecta al servicio. Si vives en México, puedes
+manifestar tu negativa en cualquier momento por esos mismos medios.</p>
+<p>No tomamos decisiones automatizadas que produzcan efectos legales o
+similares sobre ti. Los puntos de los grupos son un cálculo de juego que no
+afecta a tus derechos.</p>
+
+<h2 id="consentimiento">6. Consentimiento y cómo revocarlo</h2>
+<p>Pedimos tu permiso antes de tratar datos sensibles, antes de enviar tu
+primer ticket a la IA y, donde la ley lo exige, antes de la analítica. Además,
+iOS te pide permiso para Salud, fotos, cámara, micrófono, Calendario,
+ubicación y avisos.</p>
+<p>Puedes retirar tu consentimiento cuando quieras, sin efectos retroactivos:</p>
+<ul>
+<li><b>Lectura de tickets con IA</b>: <i>Ajustes › Privacidad › Leer tickets
+con IA</i>. Apagada, la foto se guarda como comprobante sin leerse.</li>
+<li><b>Datos de uso</b>: <i>Ajustes › Privacidad › Compartir datos de uso</i>.</li>
+<li><b>Peso, fotos de progreso y sexo</b>: <i>Ajustes › Privacidad › Borrar
+mis datos del cuerpo</i> (tus entrenos se quedan). También puedes borrar pesos
+o fotos sueltos en Ejercicio.</li>
+<li><b>Apple Salud, fotos, cámara, ubicación, avisos</b>: en los Ajustes del
+iPhone › Privacidad y seguridad (o › Notificaciones).</li>
+<li><b>Todo</b>: borra tu cuenta en <i>Ajustes › Eliminar cuenta</i>, o
+escríbenos.</li>
+</ul>
+<p>Retirar el consentimiento puede hacer que alguna función deje de estar
+disponible (por ejemplo, sin peso no hay puntos DOTS), pero no afecta al resto
+de la app.</p>
+
+<h2 id="compartir">7. Con quién se comparten</h2>
+<p><b>No vendemos tus datos ni los compartimos para publicidad.</b> Solo los
+reciben:</p>
+
+<h3>Proveedores que trabajan por nuestra cuenta (encargados)</h3>
+<p>Tratan los datos solo para darnos su servicio, bajo contrato y con
+medidas de seguridad.</p>
+<ul>
+<li><b>Supabase</b> (Supabase, Inc., Estados Unidos): base de datos, archivos, inicio de sesión y funciones del
+servidor. Servidor en Estados Unidos (Ohio, Amazon Web Services). Garantías: su acuerdo de tratamiento de datos, con compromisos de
+confidencialidad y seguridad.</li>
+<li><b>OpenAI</b> (OpenAI OpCo, LLC, Estados Unidos): solo las fotos de tickets que pides leer, para extraer el
+importe, el comercio y la fecha. Las procesa en ese momento, no las usa para
+entrenar sus modelos y puede conservarlas hasta 30 días para detectar abusos;
+después las borra. Garantías: su acuerdo de tratamiento de datos, con
+compromisos de confidencialidad y seguridad.</li>
+<li><b>Hostinger</b> (Hostinger International Ltd., Chipre): alojamiento de este sitio web y de sus registros
+técnicos.</li>
+</ul>
+
+<h3>Empresas que actúan por su cuenta</h3>
+<ul>
+<li><b>Apple</b> (Apple Inc., EE. UU.): inicio de sesión con Apple, cobro de las
+suscripciones, avisos push (APNs), Apple Salud y reconocimiento de voz. Apple
+trata esos datos según su propia política de privacidad.</li>
+<li><b>Google</b> (Google LLC, EE. UU.): solo si inicias sesión con Google.</li>
+</ul>
+
+<h3>Personas que tú eliges</h3>
 <ul>
 <li><b>Espacios y proyectos compartidos</b>: sus miembros ven el contenido de
-ese espacio o proyecto, tu nombre y tu correo.</li>
-<li><b>Grupos de entrenamiento</b>: los miembros del grupo ven tu nombre, tus
-totales (sesiones, series, puntos) y tus récords. Nunca ven el detalle de tus
-series ni nada del resto de la app.</li>
+ese espacio o proyecto (incluidos archivos adjuntos y dinero del proyecto), tu
+nombre y tu correo.</li>
+<li><b>Finanzas del hogar</b>: los miembros del hogar ven lo que se registra en
+ese hogar.</li>
+<li><b>Grupos de entrenamiento</b>: los miembros ven tu nombre, puntos,
+totales y récords del grupo (ver <a href="#sensibles">apartado 3</a>).</li>
 </ul>
 
-<h2>5. Cuánto tiempo los guardamos</h2>
-<p>Mientras tengas tu cuenta. Al borrarla, se eliminan de inmediato tu cuenta y
-todos tus datos del servidor, incluidas las fotos de tickets, y también los de
-tu teléfono. Si entraste con Apple, además se revoca el acceso de OneCore a tu
-cuenta de Apple.</p>
+<h3>Autoridades</h3>
+<p>Solo si una ley o una orden de autoridad competente nos obliga, y
+limitándonos a lo que se pida.</p>
 
-<h2>6. Tus derechos</h2>
+<h3>Transferencias internacionales</h3>
+<p>Como el servicio usa proveedores fuera de tu país (Estados Unidos), tus datos pueden
+tratarse en otros países. Lo hacemos con los mecanismos indicados arriba. En
+México, los envíos a encargados son remisiones que no requieren tu
+consentimiento. Puedes pedirnos copia de las garantías aplicables escribiendo
+al correo de contacto.</p>
+
+<h2 id="conservacion">8. Cuánto tiempo los guardamos</h2>
 <ul>
-<li><b>Ver y corregir</b>: todo lo que guardas está a la vista en la app y lo
-puedes editar en cualquier momento.</li>
-<li><b>Borrar</b>: <i>Ajustes › Eliminar cuenta</i>, al final de la pantalla.
-No se puede deshacer.</li>
-<li><b>Exportar</b>: con OneCore Pro puedes exportar tus datos a CSV y PDF. Si
-necesitas una copia de todo, escríbenos.</li>
-<li><b>Dejar de compartir datos de uso</b>: <i>Ajustes › Privacidad</i>.</li>
+<li><b>Cuenta y contenido</b> (incluidos datos sensibles y financieros):
+mientras tengas la cuenta. Lo que borras en la app se borra del servidor.</li>
+<li><b>Al borrar tu cuenta</b>: se eliminan de inmediato tu cuenta y tus datos
+del servidor, incluidas las fotos de tickets, las fotos de progreso y los
+adjuntos, y los de tu teléfono. Si entraste con Apple, además se revoca el
+acceso de OneCore a tu cuenta de Apple. Las copias de seguridad técnicas del
+proveedor se sobrescriben en un máximo de 30 días.</li>
+<li><b>Datos de uso (analítica)</b>: 12 meses desde que se generan.</li>
+<li><b>Mensajes de soporte</b>: 24 meses desde el último mensaje.</li>
+<li><b>Fotos enviadas a OpenAI</b>: hasta 30 días en OpenAI.</li>
+<li><b>Registros de compras de OneCore Pro</b>: mientras tengas la cuenta; si
+la ley fiscal nos obliga a conservar algún dato de ingresos, solo ese dato y
+durante el plazo legal (en México, por regla general 5 años, según el artículo 30 del Código Fiscal de la Federación).</li>
+<li><b>Lista de espera</b>: hasta que pidas salir o, como máximo, 24 meses
+desde que te apuntaste.</li>
+<li><b>Registros técnicos del sitio web</b>: el tiempo que los guarde el proveedor del alojamiento para la seguridad y el funcionamiento del sitio; no los usamos para nada más.</li>
 </ul>
-<p>Si vives en México, puedes ejercer tus derechos ARCO (acceso,
-rectificación, cancelación y oposición) escribiendo al correo de contacto.</p>
 
-<h2>7. Seguridad</h2>
-<p>Los datos viajan cifrados (HTTPS). En el servidor, cada cuenta solo puede leer
-y escribir lo suyo y lo que le compartieron. La sesión se guarda en el llavero
-del iPhone.</p>
+<h2 id="derechos">9. Tus derechos y cómo ejercerlos</h2>
+<p>Según la ley de tu país, puedes:</p>
+<ul>
+<li><b>Acceder</b> a tus datos y saber cómo los tratamos.</li>
+<li><b>Rectificarlos</b> si son inexactos o están incompletos.</li>
+<li><b>Cancelarlos o suprimirlos</b>.</li>
+<li><b>Oponerte</b> a su uso o pedir que se <b>limite</b> su uso o
+divulgación.</li>
+<li><b>Portabilidad</b>: recibirlos en un formato estructurado.</li>
+<li><b>Revocar tu consentimiento</b> (apartado 6).</li>
+<li>No ser objeto de decisiones solo automatizadas con efectos importantes (no
+las tomamos).</li>
+</ul>
+<p><b>Desde la app</b>: casi todo está a la vista y lo puedes corregir o borrar
+en cualquier momento. Eliminar la cuenta: <i>Ajustes › Eliminar cuenta</i>, al
+final de la pantalla (no se puede deshacer). Con Pro puedes exportar a CSV y
+PDF.</p>
+<p><b>Por correo</b>: escribe a
+<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>
+desde el correo de tu cuenta (o indicándolo) con: tu nombre, qué derecho
+quieres ejercer y sobre qué datos, y, si actúas por otra persona, documento
+que acredite la representación. Si no podemos confirmar tu identidad, te
+pediremos algún dato más; nunca te pediremos crear una cuenta nueva. Es
+gratuito. Una copia completa de tus datos te la mandamos en un formato
+legible (JSON o CSV).</p>
+<p><b>Plazos de respuesta</b>: te responderemos lo antes posible y siempre
+dentro del plazo de tu ley: México, 20 días hábiles (y lo aplicamos en los 15
+siguientes); Colombia, 10 días hábiles para consultas y 15 para reclamos;
+Argentina, 10 días corridos para acceso y 5 días hábiles para rectificar o
+suprimir; Chile, 30 días corridos (desde el 1 de diciembre de 2026); Perú, los que fija el reglamento de la Ley 29733; Canadá y Quebec, 30 días;
+Estados Unidos (datos de salud), 45 días. Si te negamos algo, te diremos por
+qué y cómo reclamar.</p>
 
-<h2>8. Menores de edad</h2>
-<p>OneCore no está dirigida a menores de 13 años y no recolectamos sus datos a
-sabiendas.</p>
+<h2 id="quejas">10. Quejas y autoridades</h2>
+<p><b>Quéjate primero con nosotros, si quieres:</b> escribe a
+<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>
+con el asunto "Queja de privacidad". Acusamos recibo en un máximo de
+<b>30 días</b> (normalmente mucho antes), investigamos, te mantenemos al tanto
+y te comunicamos el resultado sin demoras indebidas. Esto no te impide acudir
+directamente a la autoridad de tu país:</p>
+<ul>
+<li><b>México</b>: Secretaría Anticorrupción y Buen Gobierno (autoridad de
+protección de datos personales en posesión de particulares desde marzo de
+2025, en sustitución del INAI).</li>
+<li><b>Argentina</b>: Agencia de Acceso a la Información Pública (AAIP).</li>
+<li><b>Colombia</b>: Superintendencia de Industria y Comercio (SIC).</li>
+<li><b>Chile</b>: Agencia de Protección de Datos Personales (desde la entrada
+en vigor de la Ley 21.719); hasta entonces, los tribunales de justicia
+(Ley 19.628).</li>
+<li><b>Perú</b>: Autoridad Nacional de Protección de Datos Personales (ANPD),
+del Ministerio de Justicia y Derechos Humanos.</li>
+<li><b>Canadá</b>: Office of the Privacy Commissioner of Canada (OPC). En
+Quebec: Commission d'accès à l'information du Québec (CAI).</li>
+<li><b>Estados Unidos</b>: la Fiscalía General (Attorney General) de tu estado;
+en Washington, la oficina del Attorney General de Washington; en Nevada, la del
+Attorney General de Nevada.</li>
+</ul>
 
-<h2>9. Cambios a este aviso</h2>
-<p>Si cambia algo importante, te avisaremos en la app. La fecha de arriba indica
-la versión vigente.</p>
+<h2 id="menores">11. Menores de edad</h2>
+<p>OneCore no está dirigida a niños. Para usarla debes tener al menos
+<b>13 años</b>. En Quebec, Chile y Perú, si tienes
+menos de 14 años necesitas el consentimiento de tu madre, padre o tutor
+. No
+recolectamos a sabiendas datos de menores de esas edades; si crees que un menor
+nos dio sus datos, escríbenos y los borraremos.</p>
 
-<h2>10. Contacto</h2>
-<p>Para cualquier duda sobre tus datos escribe a
-<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>.</p>
+<h2 id="seguridad">12. Seguridad y aviso de brechas</h2>
+<ul>
+<li>Los datos viajan cifrados (HTTPS/TLS) y se guardan cifrados en reposo en la
+infraestructura de Supabase.</li>
+<li>En el servidor, cada cuenta solo puede leer y escribir lo suyo y lo que le
+compartieron (reglas de seguridad por fila). Los archivos privados (tickets,
+fotos de progreso) están en espacios a los que solo accede su dueño.</li>
+<li>La sesión se guarda en el llavero (Keychain) del iPhone. Las compras se
+verifican con la firma de Apple.</li>
+<li>No guardamos datos personales en los registros técnicos de la app.</li>
+</ul>
+<p>Ningún sistema es infalible. Si ocurre una vulneración de seguridad que
+afecte de forma significativa a tus derechos, te avisaremos sin demora por
+correo o en la app, explicando qué pasó, qué datos se vieron afectados, qué
+hicimos y qué puedes hacer tú. También avisaremos a la autoridad competente
+cuando la ley lo exija (por ejemplo, la Commission d'accès à l'information en
+Quebec o el Office of the Privacy Commissioner of Canada).</p>
+
+<h2 id="salud">13. Datos de salud del consumidor (versión corta)</h2>
+<p>Si vives en Washington o Nevada (Estados Unidos), tienes una política
+específica de datos de salud, en inglés:
+<a href="/en/health-data/" hreflang="en" lang="en">Consumer Health Data Privacy Policy</a>.
+En resumen:</p>
+<ul>
+<li><b>Qué datos de salud</b>: peso corporal, fotos de progreso, sexo (para
+DOTS), entrenamientos y datos leídos de Apple Salud (pasos, distancia,
+minutos de ejercicio, entrenos, peso).</li>
+<li><b>De dónde</b>: de lo que escribes o fotografías en la app, de Apple Salud
+(con tu permiso) y del Apple Watch.</li>
+<li><b>Para qué</b>: mostrarte tu progreso, calcular puntos y récords, marcar
+hábitos y sincronizar tus datos. Nunca para publicidad.</li>
+<li><b>Con quién</b>: Supabase (almacenamiento) y Apple (Salud), como
+proveedores. Los miembros de tus grupos solo ven puntos, totales y récords. No
+vendemos datos de salud.</li>
+<li><b>Tus derechos</b>: confirmar y acceder, retirar tu consentimiento y
+borrar, escribiendo a contacto@onecoreapp.com.mx o desde la app. Respondemos en
+45 días y puedes apelar una negativa.</li>
+</ul>
+
+<h2 id="residentes">14. Para residentes de…</h2>
+<h3>Estados Unidos</h3>
+<p>No vendemos ni "compartimos" datos personales para publicidad dirigida
+entre contextos, y no usamos datos sensibles para inferir características
+tuyas. Respetamos las señales de exclusión como Global Privacy Control, aunque
+no hacemos nada que haya que excluir. Si vives en Washington o Nevada, consulta
+la <a href="/en/health-data/" hreflang="en" lang="en">política de datos de
+salud</a>. Si tu estado te da derechos (por ejemplo, California, Colorado,
+Virginia o Texas), puedes ejercerlos como se explica en el apartado 9 y apelar
+una negativa respondiendo a nuestra respuesta.</p>
+
+<h3>Canadá y Quebec</h3>
+<p>Tratamos tus datos conforme a PIPEDA y, en Quebec, a la Ley sobre la
+protección de los datos personales en el sector privado (modificada por la
+Ley 25). La persona responsable de la protección de los datos personales es
+Luis Arturo Ramos Soto, contacto@onecoreapp.com.mx. Tus datos pueden
+tratarse fuera de Quebec y de Canadá (apartado 7), con evaluación previa y
+protección contractual. Puedes pedir acceso, rectificación, retirar el
+consentimiento, pedir que dejemos de difundir tus datos y la portabilidad, y
+reclamar ante la Commission d'accès à l'information du Québec (CAI). Este aviso
+está también <a href="/fr/confidentialite/" hreflang="fr" lang="fr">en
+francés</a>.</p>
+
+<h3>Chile</h3>
+<p>Cuando entre en vigor la Ley 21.719 (prevista para el 1 de diciembre de 2026; hasta entonces rige la Ley 19.628). Tienes
+derecho de acceso, rectificación, supresión, oposición, portabilidad y
+bloqueo, y a reclamar ante la Agencia de Protección de Datos Personales.</p>
+
+<h3>Perú</h3>
+<p>Conforme a la Ley 29733 y su reglamento, tienes los derechos de acceso,
+rectificación, cancelación y oposición, y puedes reclamar ante la Autoridad
+Nacional de Protección de Datos Personales. Tus datos se transfieren fuera del
+Perú a los proveedores del apartado 7. .</p>
+
+<h3>Colombia</h3>
+<p>Conforme a la Ley 1581 de 2012, puedes conocer, actualizar, rectificar y
+suprimir tus datos, pedir prueba de tu autorización, revocarla y presentar
+quejas ante la Superintendencia de Industria y Comercio tras agotar el trámite
+de consulta o reclamo con nosotros. Los datos sensibles son opcionales: no
+tienes que darlos.</p>
+
+<h3>Argentina</h3>
+<p>El titular de los datos personales tiene la facultad de ejercer el derecho
+de acceso a ellos en forma gratuita a intervalos no inferiores a seis meses,
+salvo que acredite un interés legítimo al efecto, conforme al artículo 14,
+inciso 3, de la Ley 25.326. La Agencia de Acceso a la Información Pública, en
+su carácter de órgano de control de la Ley 25.326, tiene la atribución de
+atender las denuncias y reclamos que interpongan quienes resulten afectados en
+sus derechos por incumplimiento de las normas vigentes en materia de protección
+de datos personales.</p>
+
+<h3>México</h3>
+<p>Este es el aviso de privacidad integral conforme a la Ley Federal de
+Protección de Datos Personales en Posesión de los Particulares (2025). Puedes
+ejercer tus derechos ARCO, revocar tu consentimiento y limitar el uso o
+divulgación de tus datos como se explica en los apartados 6 y 9.</p>
+
+<h2 id="cambios">15. Cambios a este aviso</h2>
+<p>Si cambiamos algo importante (por ejemplo, una nueva finalidad o un nuevo
+proveedor que reciba tus datos), te avisaremos en la app y, si hace falta, te
+pediremos de nuevo tu consentimiento antes de aplicarlo. La fecha de arriba
+indica la versión vigente. Si las versiones en español, inglés y francés no
+coinciden, prevalece la del idioma de tu país cuando la ley así lo exija.</p>
+
+<h2 id="contacto">16. Contacto</h2>
+<p>Luis Arturo Ramos Soto · Ciudad Juárez, Chihuahua, C.P. 32360, México ·
+<a href="mailto:contacto@onecoreapp.com.mx">contacto@onecoreapp.com.mx</a>.
+Consulta también los <a href="/terminos/">términos de uso</a>.</p>
   </main>
   <footer>
-    <a href="/ayuda/">Ayuda</a><a href="/pro/">OneCore Pro</a><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a>
+    <a href="/ayuda/">Ayuda</a><a href="/pro/">OneCore Pro</a><a href="/soporte/">Soporte</a><a href="/privacidad/">Privacidad</a><a href="/terminos/">Términos</a>
     <span>© 2026 OneCore</span>
   </footer>
 </div>
